@@ -22,7 +22,7 @@
 .review-card__rating {
   position: absolute;
   right:1rem;
-  top: 11rem;
+  top: 13rem;
   inline-size: 2.25rem;
   rotate: 10deg;
   filter: drop-shadow(3px 3px 2px rgb(0 0 0 / 35%));

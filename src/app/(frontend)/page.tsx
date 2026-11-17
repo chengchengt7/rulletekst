@@ -6,10 +6,12 @@ import Slogan from "./components/Slogan/Slogan";
 export default async function HomePage() {
   return (
     <div className="home-page">
-      <Banner />
-      <Slogan />
-      <CardRow />
-      <CardRow />
+      <div className="container">
+        <Banner />
+        <Slogan />
+        <CardRow />
+        <CardRow />
+      </div>
       <FilmNights />
 
     </div>

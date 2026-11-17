@@ -38,12 +38,6 @@ html {
   scroll-behavior: smooth;
 }
 
-@media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
-}
-
 body {
   min-block-size: 100svh;
   font-family: var(--font-main);
@@ -130,7 +124,7 @@ a {
 
 /* ------- layout ------- */
 
-main {
+.container {
   inline-size: min(80rem, calc(100% - 2 * var(--space-s)));
   margin-inline: auto;
 }

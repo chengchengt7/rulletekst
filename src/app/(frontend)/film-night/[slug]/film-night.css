@@ -1,0 +1,21 @@
+body:has(.film-night-hero) > header {
+  position: absolute;
+  inset: 0 0 auto;
+  z-index: 1;
+  background: linear-gradient(rgb(0 0 0 / 60%), transparent);
+}
+
+main:has(> .film-night-hero) {
+  inline-size: 100%;
+}
+
+.film-night-hero {
+  inline-size: 100%;
+  aspect-ratio: 16/5;
+  object-fit: cover;
+}
+
+.film-night-details {
+  inline-size: min(80rem, calc(100% - 2 * var(--space-s)));
+  margin-inline: auto;
+}

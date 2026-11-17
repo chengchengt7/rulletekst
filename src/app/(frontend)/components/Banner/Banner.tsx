@@ -14,7 +14,7 @@ export default function Banner() {
           Join us for Chen Kaige's <i>Farewell My Concubine</i>, followed by a conversation about love, identity, and the blurred lines between art and life.
         </p>
       </div>
-      <Link className="explore" href="/film-nights/farewell-my-concubine">
+      <Link className="explore" href="/film-night/farewell-my-concubine">
         <time dateTime="2026-11-29">Nov 29th, 2026</time>
         <h3>View<br />details<br /><span className="arrow">→</span></h3>
       </Link>

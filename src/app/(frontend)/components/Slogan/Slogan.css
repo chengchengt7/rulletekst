@@ -3,7 +3,7 @@
   text-align: center;
 
   h1 {
-    color: var(--color-300);
+    color: var(--color-100);
     line-height: 0.5;
     margin-block-end: 2.5rem;
     -webkit-box-reflect: below 0

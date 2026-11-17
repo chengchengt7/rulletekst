@@ -19,7 +19,7 @@
 
   .content {
     display: grid;
-    padding: var(--space-s) var(--space-l);
+    padding: var(--space-s) var(--space-m);
     gap: var(--space-xs);
     background-color: var(--color-700);
     mask-image:
