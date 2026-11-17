@@ -12,62 +12,44 @@ type ReviewCardProps = {
 export default function ReviewPage({ rating = 3 }: ReviewCardProps) {
   return (
     <div className="review-page">
-      <img src="/intersteller/Intersteller.png" alt="" />
+      <div className="review-hero">
+        <img src="/intersteller/Intersteller.png" alt="" />
+      </div>
 
       <div className="container">
-        <div className="review-title">
-          <h1>Interstellar</h1>
-        </div>
-        
+        <h1 className="review-title">Interstellar</h1>
         <section className="film-facts">
-          <div className="poster">
-            <img src="/intersteller/!.jpg" alt="Interstellar film poster" />
-          </div> 
-          <table className="table">
-            <tbody>
-              <tr>
-                <th id="film-director" scope="col">Director</th>
-                <th id="film-category" scope="col">Category</th>
-              </tr>
-              <tr>
-                <td headers="film-director">Christopher Nolan</td>
-                <td headers="film-category">Science fiction, Drama</td>
-              </tr>
-            </tbody>
-            <tbody>
-              <tr>
-                <th id="film-duration" scope="col">Duration</th>
-                <th id="film-age-rating" scope="col">Age rating</th>
-              </tr>
-              <tr>
-                <td headers="film-duration">169 minutes</td>
-                <td headers="film-age-rating">12A (UK cinema)</td>
-              </tr>
-            </tbody>
-            <tbody>
-              <tr>
-                <th id="film-actors" colSpan={2} scope="colgroup">Main actors</th>
-              </tr>
-              <tr>
-                <td headers="film-actors" colSpan={2}>
-                  <div className="film-cast">
-                    <span>Matthew McConaughey</span>
-                    <span>Anne Hathaway</span>
-                    <span>Jessica Chastain</span>
-                    <span>Michael Caine</span>
-                  </div>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+          <dl className="film-info">
+            <div>
+              <dt><h5>Director</h5></dt>
+              <dd>Christopher Nolan</dd>
+            </div>
+            <div>
+              <dt><h5>Duration</h5></dt>
+              <dd>169 minutes</dd>
+            </div>
+            <div>
+              <dt><h5>Age rating</h5></dt>
+              <dd>12A (UK cinema)</dd>
+            </div>
+            <div className="cast">
+              <dt><h5>Main actors</h5></dt>
+              <dd>
+                <span>Matthew McConaughey</span>
+                <span>Anne Hathaway</span>
+                <span>Jessica Chastain</span>
+                <span>Michael Caine</span>
+              </dd>
+            </div>
+          </dl>
         </section>
 
         <section className="review">
-          <div className="header">
-            <div>
+          <div>
+            <div className="title-dice">
               <h2 id="review-title">The distance between us</h2>
               <img
-                src={`/images/dice/dice-${rating}.png`}
+                src={`/images/dice-gold/dice-${rating}.png`}
                 alt={`Rated ${rating} out of 6`}
                 width={36}
                 height={36}
@@ -81,8 +63,8 @@ export default function ReviewPage({ rating = 3 }: ReviewCardProps) {
           <p>The writing can be equally forceful. Characters explain ideas and feelings that might have landed more naturally through silence. Anne Hathaway and Jessica Chastain bring conviction to their roles, but the elaborate final stretch occasionally makes them feel caught inside the machinery of Nolan’s puzzle.</p>
           <p>Still, the film’s ambition is compelling. Its explanations may not persuade everyone, yet its emotional question remains clear: what happens to a promise when keeping it takes a lifetime? Interstellar is uneven, sincere, and often moving. Long after its cosmic mysteries fade, the ache of leaving someone behind remains.</p>
         </section>
-
       </div>
+
       <section className="gallery">
         {galleryRows.map((row, index) => (
           <div className="gallery-row" key={index}>

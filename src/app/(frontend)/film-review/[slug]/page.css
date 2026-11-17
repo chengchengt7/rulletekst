@@ -6,123 +6,90 @@ body:has(.review-page) > header {
 }
 
 .review-page {
-  .container > * + * {
-    margin-top: 6rem;
-  }
-
-  & > img {
-    filter: brightness(0.7);
-    aspect-ratio: 16 / 5;
-    object-fit: cover;
+ 
+  .review-hero {
+    img {
+      inline-size: 100%;
+      filter: brightness(0.7);
+      aspect-ratio: 16 / 5;
+      object-fit: cover;
+    }
   }
 
   .review-title {
-    margin-inline: auto;
-    margin-top: 4rem;
-  
-
-    h1 {text-align: center;}
+    margin-block-start: 6rem;
+    text-align: center;
   }
 
   .film-facts {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 4fr);
-    gap: var(--space-m);
-
-    .poster {
-      aspect-ratio: 2 / 3;
-
-      img {
-        inline-size: 100%;
-        block-size: 100%;
-        object-fit: cover;
-        border-radius: var(--radius-xs);
-      }
-    }
-
-    .table {
-      inline-size: 100%;
-      table-layout: fixed;
-      border-spacing: 0;
-      border: 1px dashed var(--color-900);
-      border-radius: var(--radius-xs);
-      overflow: hidden;
-      background: var(--color-200);
-      color: var(--color-900);
-
-      th,
-      td {
-        padding: var(--space-s);
-        text-align: center;
-      }
-
-      th {
-        background: var(--color-900);
-        color: var(--color-100);
-        font-size: 0.75rem;
-        font-weight: 500;
-        letter-spacing: 0.18em;
-        text-transform: uppercase;
-      }
-
-      td {
-        font: 600 1rem var(--font-ui);
-        text-transform: uppercase;
-      }
-
-      th + th {
-        border-inline-start: 1px dashed var(--color-400);
-      }
-
-      .film-cast {
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: var(--space-xs);
-      }
-    }
+    margin-block-start: 2rem;
   }
 
-  @media (width < 60rem) {
-    .film-facts {
-      grid-template-columns: minmax(0, 1fr);
+  .film-info {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    border-block: 1px dashed var(--color-600);
+
+    > div {
+      margin-block: var(--space-s);
+      padding-inline: var(--space-m);
     }
 
-    .poster {
-      max-inline-size: 12rem;
-      justify-self: center;
+    > div + div:not(.cast) {
+      border-inline-start: 1px dashed var(--color-600);
+    }
+
+    dt {
+      margin-block-end: var(--space-s);
+      color: var(--color-300);
+    }
+
+    dd {
+      font-size: 1.25rem;
+      text-transform: uppercase;
+    }
+
+    .cast {
+      grid-column: 1 / -1;
+      margin: 0;
+      padding-block: var(--space-s);
+      border-top: 1px dashed var(--color-600);
+
+      dd {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--space-l)
+      }
     }
   }
 
   .review {
     max-width: 70ch;
     margin-inline: auto;
+     margin-block-start: 8rem;
 
-    .header {
-      display: grid;
+    .title-dice {
+      display: flex;
       gap: var(--space-m);
+      align-items: center;
 
-      & > div {
-        display: flex;
-        gap: var(--space-m);
-        align-items: center;
-
-        img {rotate: 10deg;}
-      }
+      img {rotate: 10deg;}
     }
 
     .review-sub {
       font-size: 1.5rem;
       line-height: 1.4;
-      color: var(--color-100);
+      color: var(--color-300);
     }
 
-    > p {
+    p {
       margin-block-start: var(--space-m);
       font-size: 1.25rem;
       line-height: 1.7;
     }
   }
-  
+}
+
   .gallery {
   position: relative;
   isolation: isolate;
@@ -176,9 +143,38 @@ body:has(.review-page) > header {
       }
     }
   }
-}
+
 
 @keyframes gallery-drift {
   from { transform: translateX(-8%); }
   to { transform: translateX(0); }
+}
+
+@media (width < 40rem) {
+
+  .review-page {
+    .review-hero img {aspect-ratio: 3 / 2;}
+  }
+
+  .film-info {
+    grid-template-columns: minmax(0, 1fr);
+
+    > div + div:not(.cast) {
+      border-inline-start: 0;
+      border-top: 1px dashed var(--color-600);
+      margin-block-start: 0;
+      padding-block-start: var(--space-m);
+    }
+  }
+  
+  .review-page .film-info dd {font-size: 1rem;}
+
+
+  .gallery {
+    gap: var(--space-s);
+
+    .gallery-row {gap: var(--space-s);}
+
+    img {inline-size: 12rem;}
+  }
 }
