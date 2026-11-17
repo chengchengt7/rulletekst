@@ -1,0 +1,105 @@
+.film-night-banner {
+  max-width: 60rem;
+  margin-block-start: var(--space-s);
+  margin-inline: auto;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr) 9rem;
+
+  .poster {
+    aspect-ratio: 16 / 9;
+    mask-image:
+      radial-gradient(circle at top left, transparent 16px, #000 16px),
+      radial-gradient(circle at bottom left, transparent 16px, #000 16px);
+    mask-composite: intersect;
+
+    img {
+      object-fit: cover;
+    }
+  }
+
+  .content {
+    display: grid;
+    padding: var(--space-s) var(--space-l);
+    gap: var(--space-xs);
+    background-color: var(--color-700);
+    mask-image:
+      radial-gradient(circle at top right, transparent 16px, #000 16px),
+      radial-gradient(circle at bottom right, transparent 16px, #000 16px),
+      radial-gradient(circle at right center, transparent 4px, #000 4px);
+    mask-size: 100% 100%, 100% 100%, 100% 16px;
+    mask-composite: intersect;
+
+    h5 {color: var(--color-accent);}
+
+    .description {
+      color: var(--color-200);
+    }
+  }
+
+  .explore {
+    display: grid;
+    padding: var(--space-s) var(--space-m);
+    color: var(--color-900);
+    background: var(--color-accent-mute);
+    font-family: var(--font-ui);
+    mask-image:
+      radial-gradient(circle at top left, transparent 16px, #000 16px),
+      radial-gradient(circle at top right, transparent 16px, #000 16px),
+      radial-gradient(circle at bottom left, transparent 16px, #000 16px),
+      radial-gradient(circle at bottom right, transparent 16px, #000 16px),
+      radial-gradient(circle at left center, transparent 4px, #000 4px);
+    mask-size: 100% 100%, 100% 100%, 100% 100%, 100% 100%, 100% 16px;
+    mask-composite: intersect;
+    transform-origin: bottom left;
+    transition: transform 300ms ease;
+
+    .arrow {
+      display: inline-block;
+      transition: transform 300ms ease;
+    }
+
+    &:hover {
+      background-color: var(--color-accent);
+      transform: rotate(2deg);
+
+      .arrow {
+        transform: translateX(2px);
+      }
+    }
+  }
+}
+
+@media (width < 60rem) {
+  .film-night-banner {
+    grid-template-columns: minmax(0, 1fr);
+
+    .poster {
+      mask-image:
+        radial-gradient(circle at top left, transparent 16px, #000 16px),
+        radial-gradient(circle at top right, transparent 16px, #000 16px);
+    }
+
+    .content {
+      mask-image:
+        radial-gradient(circle at bottom left, transparent 16px, #000 16px),
+        radial-gradient(circle at bottom right, transparent 16px, #000 16px),
+        radial-gradient(circle at center bottom, transparent 4px, #000 4px);
+      mask-size: 100% 100%, 100% 100%, 16px 100%;
+    }
+
+    .explore {
+      mask-image:
+        radial-gradient(circle at top left, transparent 16px, #000 16px),
+        radial-gradient(circle at top right, transparent 16px, #000 16px),
+        radial-gradient(circle at bottom left, transparent 16px, #000 16px),
+        radial-gradient(circle at bottom right, transparent 16px, #000 16px),
+        radial-gradient(circle at center top, transparent 4px, #000 4px);
+      mask-size: 100% 100%, 100% 100%, 100% 100%, 100% 100%, 16px 100%;
+      gap: var(--space-xs);
+
+      &:hover {
+        transform: rotate(1deg);
+      }
+    }
+  }
+}

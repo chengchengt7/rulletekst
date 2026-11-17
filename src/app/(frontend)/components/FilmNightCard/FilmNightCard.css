@@ -1,0 +1,32 @@
+.film-night-card {
+  display: grid;
+  color: var(--color-900);
+  overflow: hidden;
+  mask-image:
+    radial-gradient(circle at top left, transparent 8px, #000 9px),
+    radial-gradient(circle at top right, transparent 8px, #000 9px),
+    radial-gradient(circle at bottom left, transparent 8px, #000 9px),
+    radial-gradient(circle at bottom right, transparent 8px, #000 9px);
+  mask-composite: intersect;
+
+  img {
+    display: block;
+    width: 100%;
+    object-fit: cover;
+    mask-image:
+      radial-gradient(circle at bottom left, transparent 8px, #000 9px),
+      radial-gradient(circle at bottom right, transparent 8px, #000 9px);
+    mask-composite: intersect;
+  }
+
+  .content {
+    background-color: var(--color-300);
+    display: grid;
+    gap: var(--space-xs);
+    padding: var(--space-xs);
+    mask-image:
+      radial-gradient(circle at top left, transparent 8px, #000 9px),
+      radial-gradient(circle at top right, transparent 8px, #000 9px);
+    mask-composite: intersect;
+  }
+}

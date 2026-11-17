@@ -1,0 +1,45 @@
+# dependencies
+node_modules
+
+/.idea/*
+!/.idea/runConfigurations
+
+# next.js
+/.next/
+/out/
+
+# production
+/build
+
+# misc
+.DS_Store
+*.pem
+
+# debug
+npm-debug.log*
+
+# local env files
+.env*.local
+
+# vercel
+.vercel
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
+
+/media
+
+# env files for Payload and Postgres
+payload.env
+postgres.env
+.env
+
+# SQLite databases
+*.db
+
+# Exam brief
+/Eksamen H-26.pdf
+
+# Local image generation metadata
+/public/images/dice/generation-prompts.json

@@ -1,0 +1,35 @@
+.footer {
+  border-block-start: 1px solid var(--color-700);
+  padding: var(--space-l) var(--space-m) 2.5rem;
+  color: var(--color-400);
+
+  > div {
+    max-width: 70rem;
+    margin-inline: auto;
+    display: flex;
+    gap: var(--space-l);
+    justify-content: space-between;
+
+    p,li {font-size: 0.875rem;}
+
+    .copyright {
+      margin-block-start: var(--space-s);
+      font-family: var(--font-ui);
+      font-size: 0.75rem;
+    }
+
+    ul > * + * { 
+      margin-top: var(--space-xxs);
+    }
+
+    @media ( width < 40rem) {
+      display: grid;
+    }
+  }
+
+  
+  
+ 
+ 
+}
+

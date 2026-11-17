@@ -1,0 +1,23 @@
+.article-card {
+   display: grid;
+   grid-template-rows: auto 1fr;
+   border-radius: var(--radius-xxs);
+   background-color: var(--color-200);
+   color: var(--color-900);
+
+   img {
+    border-radius: var(--radius-xxs) var(--radius-xxs) 0 0;
+   }
+
+   .content {
+    display: grid;
+    padding: var(--space-s);
+
+    > * + * {
+      margin-top: var(--space-xs);
+    }
+
+    h5 {margin-top: auto};
+  
+   }
+}

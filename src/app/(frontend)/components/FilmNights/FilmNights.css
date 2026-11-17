@@ -1,0 +1,48 @@
+.film-nights {
+    background-color: var(--color-800); 
+    padding-block: 2rem 4rem;
+    position: relative;
+    isolation: isolate;
+
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      background-color: var(--color-800);
+      box-shadow: 0 0 0 100vmax var(--color-800);
+      clip-path: inset(0 -100vmax);
+      pointer-events: none;
+    }
+  
+
+  .film-nights-content { 
+  border-radius: var(--radius-xxs);
+  padding: var(--space-s);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-m);
+  margin-top: var(--space-xxs);
+
+  > p {
+    flex: 1 1 200px;
+    min-width: min(200px, 100%);
+    padding-top: var(--space-s);
+
+    &::first-letter {
+      font-size: 2.5em;
+      line-height: 0.85;
+    }
+  }
+  
+  > .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    flex: 3 1 calc(560px + 3 * var(--space-s));
+    min-width: min(140px, 100%);
+    max-width: 100%;
+    gap: var(--space-s);
+
+  }
+}
+}

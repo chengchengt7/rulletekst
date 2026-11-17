@@ -1,0 +1,29 @@
+.review-card {
+   position: relative;
+   border-radius: var(--radius-xxs);
+   background-color: var(--color-200);
+   color: var(--color-900);
+
+   img {
+    border-radius: var(--radius-xxs) var(--radius-xxs) 0 0;
+   }
+
+   .content {
+    padding: var(--space-s);
+
+    p {line-height: 1.4;}
+
+    > * + * {
+      margin-top: var(--space-xs);
+    }
+  
+   }
+}
+.review-card__rating {
+  position: absolute;
+  right:1rem;
+  top: 11rem;
+  inline-size: 2.25rem;
+  rotate: 10deg;
+  filter: drop-shadow(3px 3px 2px rgb(0 0 0 / 35%));
+}

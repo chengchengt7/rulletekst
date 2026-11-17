@@ -1,0 +1,17 @@
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  
+  ul {
+    display: flex;
+     
+    a{
+      padding: 1rem;
+      font-family: var(--font-ui);
+      letter-spacing: 0.03rem;
+      font-weight: 500;
+    }
+  }
+}

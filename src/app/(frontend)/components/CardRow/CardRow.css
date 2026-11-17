@@ -1,0 +1,26 @@
+.card-row {
+  display: grid;
+  gap: var(--space-s);
+  margin-block: 6rem;
+
+  h3 { font-family: var(--font-ui);}
+
+  & > :first-child {
+    display: flex;
+    align-items: center;
+    gap: var(--space-m);
+  }
+
+  & > :nth-child(2) {
+    display: flex;
+      gap: var(--space-m);
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+
+      > * {
+        flex: 0 0 320px;
+        scroll-snap-align: start;
+      }
+   
+  }
+}
