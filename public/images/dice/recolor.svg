@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg">
+  <filter id="dice-colors" color-interpolation-filters="sRGB">
+    <!-- Map the dark border and pips to gold, and the cream face to black. -->
+    <feColorMatrix type="matrix" values="
+      -0.3189 -1.0728 -0.1083 0 1.3
+      -0.2689 -0.9045 -0.0913 0 1.0961
+      0 0 0 0 0
+      0 0 0 1 0" />
+  </filter>
+</svg>
