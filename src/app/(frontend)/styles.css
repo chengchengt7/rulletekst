@@ -9,7 +9,7 @@
   --color-800: #302d27;
   --color-850: #181714;
   --color-900: #000;
-  --color-accent: gold;
+  --color-accent: #C9B477;
   --color-accent-mute: color-mix(in srgb, var(--color-accent) 85%, black);
 
   --font-main: var(--font-newsreader), Georgia, serif;
@@ -109,7 +109,7 @@ a {
     top: -4px;
   }
 
-  &:hover {
+  &:not(.card-row__link, .review-card, .article-card):hover {
     top: -2px;
   }
 }

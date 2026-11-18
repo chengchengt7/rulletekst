@@ -9,6 +9,14 @@
     display: flex;
     align-items: center;
     gap: var(--space-m);
+
+    .arrow {
+      transition: translate 250ms ease;
+    }
+
+    &:hover .arrow {
+      translate: 4px 0;
+    }
   }
 
   & > :nth-child(2) {
@@ -16,9 +24,13 @@
       gap: var(--space-m);
       overflow-x: auto;
       overscroll-behavior-x: contain;
-      padding-block: 4px;
+      padding-block: 4px var(--space-m);
       margin-block: -4px;
       scroll-snap-type: x mandatory;
+      scrollbar-color: var(--color-800) var(--color-900);
+      scrollbar-width: thin;
+
+      &::-webkit-scrollbar {height: 4px;} 
 
       > * {
         flex: 0 0 320px;
