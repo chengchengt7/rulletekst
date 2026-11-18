@@ -1,0 +1,11 @@
+.film-reviews {
+  padding-block: 4rem 6rem;
+
+  h1 { margin-block-end: var(--space-l); }
+}
+
+.reviews-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr));
+  gap: 4rem var(--space-l);
+}

@@ -1,20 +1,22 @@
-import ArticleCard from "../ArticleCard/ArticleCard";
-import ReviewCard from "../ReviewCard/ReviewCard";
+import type { ReactNode } from "react";
+import Link from "next/link";
 import "./CardRow.css";
 
-export default function CardRow() {
+type CardRowProps = {
+  title: string;
+  href: string;
+  children: ReactNode;
+};
+
+export default function CardRow({ title, href, children }: CardRowProps) {
   return (
     <section className="card-row">
+      <Link className="card-row__link" href={href}>
+        <h3>{title}</h3>
+        <span>≻</span>
+      </Link>
       <div>
-        <h3>Articles</h3>
-        <p>≻</p>
-      </div>
-      <div>
-        <ArticleCard />
-        <ArticleCard />
-        <ReviewCard rating={5} />
-        <ReviewCard rating={2} />
-        <ReviewCard rating={2} />
+        {children}
       </div>
     </section>
   )

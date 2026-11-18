@@ -8,9 +8,10 @@ export const Rating: CollectionConfig = {
   fields: [
     {
       name: "title",
-      type: "number",
+      type: "select",
       label: "rating",
       required: true,
+      options: ["1", "2", "3", "4", "5", "6"],
     },
   ],
 };

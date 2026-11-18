@@ -4,7 +4,7 @@ import "./Footer.css";
 export default function Footer() {
   return (
     <footer className="footer">
-      <div>
+      <div className="container">
         <div>
           <p>Rulletekst - The film ends. The conversation begins.</p>
           <p className="copyright">© {new Date().getFullYear()} Rulletekst. All rights reserved.</p>

@@ -18,6 +18,7 @@ export const Reviews: CollectionConfig = {
       label: "Hero Photo",
       type: "upload",
       relationTo: "media",
+      required: true,
       filterOptions: { mimeType: { contains: "image/" } },
     },
     {
@@ -25,6 +26,8 @@ export const Reviews: CollectionConfig = {
       type: "upload",
       relationTo: "media",
       hasMany: true,
+      required: true,
+      minRows: 1,
       filterOptions: { mimeType: { contains: "image/" } },
     },
     {
@@ -51,6 +54,7 @@ export const Reviews: CollectionConfig = {
       type: "relationship",
       relationTo: "actors",
       hasMany: true,
+      minRows: 1,
       required: true,
     },
     {
@@ -81,6 +85,7 @@ export const Reviews: CollectionConfig = {
       name: "journalist",
       type: "relationship",
       relationTo: "users",
+      required: true,
     },
   ],
 };

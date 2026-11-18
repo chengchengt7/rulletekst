@@ -2,7 +2,7 @@ import { postgresAdapter } from '@payloadcms/db-postgres';
 import { lexicalEditor } from '@payloadcms/richtext-lexical';
 import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob';
 import path from 'path';
-import { Block, buildConfig, CollectionConfig } from 'payload';
+import { Block, buildConfig, CollectionConfig, GlobalConfig } from 'payload';
 import { fileURLToPath } from 'url';
 import sharp from 'sharp';
 import { migrations } from "./migrations";
@@ -14,6 +14,8 @@ import { Actors } from './collections/Actors';
 import { Rating } from './collections/Rating';
 import { AgeRating } from './collections/Age-rating';
 import { Reviews } from './collections/Reviews';
+import { Home } from './globals/Home';
+import { ReviewBlock } from './blocks/ReviewBlock';
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
@@ -40,7 +42,14 @@ const collections: CollectionConfig[] = [
  * Blokker
  * Legg blokker inn i dette arrayet for å inkludere dem.
  */
-const blocks: Block[] = [];
+const blocks: Block[] = [
+  ReviewBlock,
+
+];
+
+const globals: GlobalConfig[] = [
+  Home
+];
 
 
 
@@ -59,6 +68,7 @@ export default buildConfig({
   },
   blocks,
   collections,
+  globals: [Home],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {

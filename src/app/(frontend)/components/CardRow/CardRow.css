@@ -15,12 +15,14 @@
     display: flex;
       gap: var(--space-m);
       overflow-x: auto;
+      overscroll-behavior-x: contain;
+      padding-block: 4px;
+      margin-block: -4px;
       scroll-snap-type: x mandatory;
 
       > * {
         flex: 0 0 320px;
         scroll-snap-align: start;
       }
-   
   }
 }

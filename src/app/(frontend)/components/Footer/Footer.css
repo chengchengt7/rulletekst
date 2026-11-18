@@ -4,8 +4,6 @@
   color: var(--color-400);
 
   > div {
-    max-width: 70rem;
-    margin-inline: auto;
     display: flex;
     gap: var(--space-l);
     justify-content: space-between;

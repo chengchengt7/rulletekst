@@ -12,6 +12,7 @@ export const Users: CollectionConfig = {
     {
       name: "name",
       type: "text",
+      required: true,
       admin: {
         description:
           "The display name for this account. Use your email address to log in.",
@@ -21,6 +22,7 @@ export const Users: CollectionConfig = {
       name: "avatar",
       type: "upload",
       relationTo: "media",
+      required: true,
       filterOptions: {
         mimeType: { contains: "image/" },
       },

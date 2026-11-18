@@ -65,7 +65,9 @@ export interface Config {
   auth: {
     users: UserAuthOperations;
   };
-  blocks: {};
+  blocks: {
+    reviewCards: ReviewCardsBlock;
+  };
   collections: {
     users: User;
     media: Media;
@@ -97,8 +99,12 @@ export interface Config {
     defaultIDType: number;
   };
   fallbackLocale: null;
-  globals: {};
-  globalsSelect: {};
+  globals: {
+    home: Home;
+  };
+  globalsSelect: {
+    home: HomeSelect<false> | HomeSelect<true>;
+  };
   locale: null;
   widgets: {
     collections: CollectionsWidget;
@@ -129,34 +135,57 @@ export interface UserAuthOperations {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "users".
+ * via the `definition` "ReviewCardsBlock".
  */
-export interface User {
-  id: number;
+export interface ReviewCardsBlock {
+  title: string;
   /**
-   * The display name for this account. Use your email address to log in.
+   * Select six reviews in the order they should appear.
    */
-  name?: string | null;
-  avatar?: (number | null) | Media;
+  reviews: (number | Review)[];
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'reviewCards';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "reviews".
+ */
+export interface Review {
+  id: number;
+  title: string;
+  /**
+   * When enabled, the slug will auto-generate from the title field on save and autosave.
+   */
+  generateSlug?: boolean | null;
+  slug: string;
+  heroPhoto: number | Media;
+  gallery: (number | Media)[];
+  director: number | Director;
+  duration: number;
+  ratingBlock: number | RatingBlock;
+  actors: (number | Actor)[];
+  'review-title': string;
+  'reivew-rating': number | Rating;
+  'sub-title': string;
+  'review-body': {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  journalist: number | User;
   updatedAt: string;
   createdAt: string;
-  email: string;
-  resetPasswordToken?: string | null;
-  resetPasswordExpiration?: string | null;
-  salt?: string | null;
-  hash?: string | null;
-  resetPasswordRequestedAt?: string | null;
-  loginAttempts?: number | null;
-  lockUntil?: string | null;
-  sessions?:
-    | {
-        id: string;
-        createdAt?: string | null;
-        expiresAt: string;
-      }[]
-    | null;
-  password?: string | null;
-  collection: 'users';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -196,6 +225,16 @@ export interface Director {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "rating-block".
+ */
+export interface RatingBlock {
+  id: number;
+  title: string;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "actors".
  */
 export interface Actor {
@@ -215,59 +254,40 @@ export interface Actor {
  */
 export interface Rating {
   id: number;
-  title: number;
+  title: '1' | '2' | '3' | '4' | '5' | '6';
   updatedAt: string;
   createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "rating-block".
+ * via the `definition` "users".
  */
-export interface RatingBlock {
+export interface User {
   id: number;
-  title: string;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "reviews".
- */
-export interface Review {
-  id: number;
-  title: string;
   /**
-   * When enabled, the slug will auto-generate from the title field on save and autosave.
+   * The display name for this account. Use your email address to log in.
    */
-  generateSlug?: boolean | null;
-  slug: string;
-  heroPhoto?: (number | null) | Media;
-  gallery?: (number | Media)[] | null;
-  director: number | Director;
-  duration: number;
-  ratingBlock: number | RatingBlock;
-  actors: (number | Actor)[];
-  'review-title': string;
-  'reivew-rating': number | Rating;
-  'sub-title': string;
-  'review-body': {
-    root: {
-      type: string;
-      children: {
-        type: any;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  };
-  journalist?: (number | null) | User;
+  name: string;
+  avatar: number | Media;
   updatedAt: string;
   createdAt: string;
+  email: string;
+  resetPasswordToken?: string | null;
+  resetPasswordExpiration?: string | null;
+  salt?: string | null;
+  hash?: string | null;
+  resetPasswordRequestedAt?: string | null;
+  loginAttempts?: number | null;
+  lockUntil?: string | null;
+  sessions?:
+    | {
+        id: string;
+        createdAt?: string | null;
+        expiresAt: string;
+      }[]
+    | null;
+  password?: string | null;
+  collection: 'users';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -509,6 +529,40 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
   batch?: T;
   updatedAt?: T;
   createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "home".
+ */
+export interface Home {
+  id: number;
+  layout: ReviewCardsBlock[];
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "home_select".
+ */
+export interface HomeSelect<T extends boolean = true> {
+  layout?:
+    | T
+    | {
+        reviewCards?: T | ReviewCardsBlockSelect<T>;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ReviewCardsBlock_select".
+ */
+export interface ReviewCardsBlockSelect<T extends boolean = true> {
+  title?: T;
+  reviews?: T;
+  id?: T;
+  blockName?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
