@@ -5,6 +5,7 @@ import * as migration_20261118_004047_add_review_duration_journalist from './202
 import * as migration_20261118_004102_add_review_body from './20261118_004102_add_review_body';
 import * as migration_20261118_010916_add_review_images from './20261118_010916_add_review_images';
 import * as migration_20261118_031434_sync_review_fields_and_user_avatar from './20261118_031434_sync_review_fields_and_user_avatar';
+import * as migration_20261118_034917_add_media_cloud_storage from './20261118_034917_add_media_cloud_storage';
 
 export const migrations = [
   {
@@ -40,6 +41,11 @@ export const migrations = [
   {
     up: migration_20261118_031434_sync_review_fields_and_user_avatar.up,
     down: migration_20261118_031434_sync_review_fields_and_user_avatar.down,
-    name: '20261118_031434_sync_review_fields_and_user_avatar'
+    name: '20261118_031434_sync_review_fields_and_user_avatar',
+  },
+  {
+    up: migration_20261118_034917_add_media_cloud_storage.up,
+    down: migration_20261118_034917_add_media_cloud_storage.down,
+    name: '20261118_034917_add_media_cloud_storage'
   },
 ];

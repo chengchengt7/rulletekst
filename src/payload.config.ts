@@ -1,5 +1,6 @@
 import { postgresAdapter } from '@payloadcms/db-postgres';
 import { lexicalEditor } from '@payloadcms/richtext-lexical';
+import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob';
 import path from 'path';
 import { Block, buildConfig, CollectionConfig } from 'payload';
 import { fileURLToPath } from 'url';
@@ -70,5 +71,12 @@ export default buildConfig({
     prodMigrations: migrations
   }),
   sharp,
-  plugins: [],
+  plugins: [
+    vercelBlobStorage({
+      collections: { media: { disablePayloadAccessControl: true } },
+      token: process.env.BLOB_READ_WRITE_TOKEN || '',
+      alwaysInsertFields: true,
+      clientUploads: true,
+    }),
+  ],
 });
