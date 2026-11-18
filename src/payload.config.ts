@@ -8,6 +8,11 @@ import { migrations } from "./migrations";
 
 import { Users } from './collections/Users';
 import { Media } from './collections/Media';
+import { Directors } from './collections/Directors';
+import { Actors } from './collections/Actors';
+import { Rating } from './collections/Rating';
+import { AgeRating } from './collections/Age-rating';
+import { Reviews } from './collections/Reviews';
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
@@ -21,7 +26,13 @@ const dirname = path.dirname(filename);
 
 const collections: CollectionConfig[] = [
   Users,
-  Media
+  Media,
+  Directors,
+  Actors,
+  Rating,
+  AgeRating,
+  Reviews,
+
 ];
 
 /**
