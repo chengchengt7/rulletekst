@@ -35,6 +35,8 @@ export default async function HomePage() {
         <CardRow title="Articles" href="/articles">
           <ArticleCard />
           <ArticleCard />
+          <ArticleCard />
+          <ArticleCard />
         </CardRow>
         {home.layout.map((block) => (
           <CardRow key={block.id} title={block.title} href="/film-reviews">
@@ -45,7 +47,6 @@ export default async function HomePage() {
         ))}
       </div>
       <FilmNights />
-
     </div>
-  )
+  );
 }

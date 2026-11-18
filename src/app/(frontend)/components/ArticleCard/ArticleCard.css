@@ -1,12 +1,12 @@
 .article-card {
    display: grid;
    grid-template-rows: auto 1fr;
-   border-radius: var(--radius-xxs);
-   background-color: var(--color-200);
-   color: var(--color-900);
+   border-radius: var(--radius-xs);
+   border: 1px solid var(--color-700);
+   background-color: var(--color-850);
 
    img {
-    border-radius: var(--radius-xxs) var(--radius-xxs) 0 0;
+    border-radius: var(--radius-xs) var(--radius-xs) 0 0;
    }
 
    .content {

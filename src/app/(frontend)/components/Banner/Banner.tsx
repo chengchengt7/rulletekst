@@ -1,5 +1,6 @@
 import "./Banner.css";
 import Link from "next/link";
+import ArrowIcon from "../ArrowIcon";
 
 export default function Banner() {
   return (
@@ -16,7 +17,7 @@ export default function Banner() {
       </div>
       <Link className="explore" href="/film-night/farewell-my-concubine">
         <time dateTime="2026-11-29">Nov 29th, 2026</time>
-        <h3>View<br />details<br /><span className="arrow">→</span></h3>
+        <h3>View<br />details<br /><ArrowIcon /></h3>
       </Link>
     </article>
   )

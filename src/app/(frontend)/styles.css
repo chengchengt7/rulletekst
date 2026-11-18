@@ -7,6 +7,7 @@
   --color-600: #736d62;
   --color-700: #534e45;
   --color-800: #302d27;
+  --color-850: #181714;
   --color-900: #000;
   --color-accent: gold;
   --color-accent-mute: color-mix(in srgb, var(--color-accent) 85%, black);

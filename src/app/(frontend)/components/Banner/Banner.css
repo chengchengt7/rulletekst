@@ -54,7 +54,8 @@
     transition: transform 300ms ease;
 
     .arrow {
-      display: inline-block;
+      font-size: 0.75em;
+      margin-top: var(--space-xxs);
       transition: transform 300ms ease;
     }
 
