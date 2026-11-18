@@ -1,16 +1,15 @@
 import Link from "next/link";
+import Image from "next/image";
 import "./Header.css";
 
 export default function Header() {
   return (
     <header>
-      <Link href="/" className="header-brand">
-        <h2>
-          <span className="header-brand__text">
-            Rulletekst
-            <span className="header-brand__copy" aria-hidden="true">Rulletekst</span>
-          </span>
-        </h2>
+      <Link href="/">
+        <img
+          src="/rulletekst-logo.png"
+          alt="logo"
+        />
       </Link>
       <nav>
         <ul>

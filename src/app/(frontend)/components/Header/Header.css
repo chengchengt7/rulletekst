@@ -4,32 +4,7 @@ header {
   align-items: center;
   padding: 1rem 2rem;
 
-  .header-brand {
-    top: 0;
-
-    h2 { overflow: hidden; }
-
-    .header-brand__text {
-      position: relative;
-      display: block;
-      transition: transform 800ms cubic-bezier(0.25, 1, 0.35, 1);
-    }
-
-    .header-brand__copy {
-      position: absolute;
-      top: 150%;
-      left: 0;
-    }
-
-    &:is(:hover, :focus-visible) .header-brand__text {
-      transform: translateY(-150%);
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      .header-brand__text { transition: none; }
-      &:is(:hover, :focus-visible) .header-brand__text { transform: none; }
-    }
-  }
+  img {width: 90px;}
   
   ul {
     display: flex;

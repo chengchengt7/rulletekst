@@ -20,6 +20,9 @@ const instrumentSans = Instrument_Sans({
 export const metadata = {
   description: "The film ends. The conversation begins.",
   title: "Rulletekst",
+  icons: {
+    icon: { url: "/favicon.png", type: "image/png", sizes: "32x32" },
+  },
 };
 
 export default async function RootLayout(props: { children: React.ReactNode }) {

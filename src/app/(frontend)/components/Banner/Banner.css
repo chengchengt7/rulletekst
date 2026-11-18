@@ -1,6 +1,5 @@
 .film-night-banner {
   max-width: 60rem;
-  margin-block-start: var(--space-s);
   margin-inline: auto;
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr) 9rem;
