@@ -16,7 +16,7 @@ export default function ReviewCard({ review }: ReviewCardProps) {
       <div className="review-card__image">
         <img src={photo.url!} alt={photo.alt} loading="lazy" />
         <span className="review-card__rating">
-          <img src={`/images/dice/dice-${rating.title}.png`} alt={`Rated ${rating.title} out of 6`} width={36} height={36} />
+          <img src={`/images/dice-accent/dice-${rating.title}.png`} alt={`Rated ${rating.title} out of 6`} width={36} height={36} />
         </span>
       </div>
       <div className="content">

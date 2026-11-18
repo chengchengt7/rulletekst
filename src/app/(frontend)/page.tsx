@@ -10,6 +10,13 @@ import type { Review } from "@/payload-types";
 
 export default async function HomePage() {
   const payload = await getPayload({ config });
+  const { docs: articles } = await payload.find({
+    collection: "articles",
+    sort: "-publishedAt",
+    limit: 6,
+    depth: 1,
+    populate: { users: { name: true } },
+  });
   const home = await payload.findGlobal({
     slug: "home",
     depth: 2,
@@ -32,12 +39,11 @@ export default async function HomePage() {
       <div className="container">
         <Banner />
         <Slogan />
-        <CardRow title="Articles" href="/articles">
-          <ArticleCard />
-          <ArticleCard />
-          <ArticleCard />
-          <ArticleCard />
-        </CardRow>
+        {articles.length > 0 && (
+          <CardRow title="Articles" href="/articles">
+            {articles.map((article) => <ArticleCard key={article.id} article={article} />)}
+          </CardRow>
+        )}
         {home.layout.map((block) => (
           <CardRow key={block.id} title={block.title} href="/film-reviews">
             {(block.reviews as Review[]).map((review) => (

@@ -1,0 +1,13 @@
+.articles-page {
+  padding-block: 4rem 6rem;
+}
+
+.articles-page h1 {
+  margin-block-end: var(--space-l);
+}
+
+.articles-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 20rem), 1fr));
+  gap: 4rem var(--space-l);
+}

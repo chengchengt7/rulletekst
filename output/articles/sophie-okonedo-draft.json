@@ -1,0 +1,37 @@
+{
+  "status": "Awaiting original photo: RogerEbert.com returns HTTP 403 for the image",
+  "source": "https://www.rogerebert.com/interviews/sophie-okonedo-clarissa-mouse-interview",
+  "originalImage": "https://www.rogerebert.com/wp-content/uploads/2026/11/Clarissa-Neon.webp",
+  "authorEmail": "aa@local.dev",
+  "title": "Sophie Okonedo on the emotions a performance leaves unspoken",
+  "slug": "sophie-okonedo-on-the-emotions-a-performance-leaves-unspoken",
+  "category": "Interviews",
+  "subTitle": "The actor reflects on grief, silence and connection in Clarissa and Mouse.",
+  "body": [
+    {
+      "type": "paragraph",
+      "text": "In an interview with RogerEbert.com’s Zachary Lee, Sophie Okonedo discusses two performances linked by memory, loss and the emotions people struggle to express. Clarissa takes her to Lagos, while Mouse places her in Arkansas, but both characters carry histories that emerge through small gestures."
+    },
+    {
+      "type": "paragraph",
+      "text": "In Clarissa, directed by Chuko and Arie Esiri, she plays a woman preparing a gathering while reflecting on the life she has built. In Kelly O’Sullivan and Alex Thompson’s Mouse, her character Helen navigates bereavement and an unexpected connection with her daughter’s friend."
+    },
+    {
+      "type": "quote",
+      "text": "“I always feel like I’m learning.”"
+    },
+    {
+      "type": "paragraph",
+      "text": "Sophie Okonedo, speaking to RogerEbert.com."
+    },
+    {
+      "type": "paragraph",
+      "text": "Okonedo describes silence as an active part of her craft, allowing a face or movement to communicate what dialogue leaves open. She also reflects on rehearsal, trust between collaborators and the value of waiting for material that rewards sustained attention. The interview reveals an actor interested in remaining curious rather than treating experience as a finished method."
+    },
+    {
+      "type": "source",
+      "text": "Zachary Lee, RogerEbert.com.",
+      "url": "https://www.rogerebert.com/interviews/sophie-okonedo-clarissa-mouse-interview"
+    }
+  ]
+}

@@ -76,6 +76,7 @@ export interface Config {
     rating: Rating;
     'rating-block': RatingBlock;
     reviews: Review;
+    articles: Article;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -90,6 +91,7 @@ export interface Config {
     rating: RatingSelect<false> | RatingSelect<true>;
     'rating-block': RatingBlockSelect<false> | RatingBlockSelect<true>;
     reviews: ReviewsSelect<false> | ReviewsSelect<true>;
+    articles: ArticlesSelect<false> | ArticlesSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -291,6 +293,45 @@ export interface User {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "articles".
+ */
+export interface Article {
+  id: number;
+  title: string;
+  /**
+   * When enabled, the slug will auto-generate from the title field on save and autosave.
+   */
+  generateSlug?: boolean | null;
+  slug: string;
+  category?: string | null;
+  publishedAt?: string | null;
+  heroPhoto: number | Media;
+  gallery?: (number | Media)[] | null;
+  'sub-title': string;
+  /**
+   * Use Quote for pull quotes and Upload to insert photos into the story.
+   */
+  'review-body': {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  journalist: number | User;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv".
  */
 export interface PayloadKv {
@@ -340,6 +381,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'reviews';
         value: number | Review;
+      } | null)
+    | ({
+        relationTo: 'articles';
+        value: number | Article;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -484,6 +529,24 @@ export interface ReviewsSelect<T extends boolean = true> {
   actors?: T;
   'review-title'?: T;
   'reivew-rating'?: T;
+  'sub-title'?: T;
+  'review-body'?: T;
+  journalist?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "articles_select".
+ */
+export interface ArticlesSelect<T extends boolean = true> {
+  title?: T;
+  generateSlug?: T;
+  slug?: T;
+  category?: T;
+  publishedAt?: T;
+  heroPhoto?: T;
+  gallery?: T;
   'sub-title'?: T;
   'review-body'?: T;
   journalist?: T;

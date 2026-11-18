@@ -1,0 +1,191 @@
+.article-page {
+  padding-block: clamp(2rem, 5vw, 5rem) 4rem;
+}
+
+.article-heading {
+  max-inline-size: 58rem;
+  margin-inline: auto;
+  text-align: center;
+}
+
+.article-category {
+  font-family: var(--font-ui);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+}
+
+.article-heading h1 {
+  margin-block: 1rem 1.5rem;
+  font-weight: 500;
+  line-height: 1.06;
+}
+
+.article-deck {
+  max-inline-size: 44rem;
+  margin-inline: auto;
+  font-size: clamp(1.2rem, 2vw, 1.6rem);
+  font-style: italic;
+  color: var(--color-200);
+  text-wrap: pretty;
+}
+
+.article-meta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 0.75rem 0;
+  margin-block: 1.75rem 3rem;
+  font-family: var(--font-ui);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-300);
+}
+
+.article-meta > * {
+  padding-inline: 1rem;
+}
+
+.article-meta > * + * {
+  border-inline-start: 1px solid var(--color-accent);
+}
+
+.article-meta time {
+  padding-block: 0;
+  font: inherit;
+  letter-spacing: inherit;
+}
+
+.article-hero {
+  margin-block-end: 3rem;
+}
+
+.article-hero img {
+  inline-size: 100%;
+  aspect-ratio: 2.1;
+  object-fit: cover;
+  border-radius: var(--radius-xs);
+}
+
+.article-page figcaption {
+  margin-block-start: 0.6rem;
+  font-family: var(--font-ui);
+  font-size: 0.8rem;
+  line-height: 1.5;
+  color: var(--color-400);
+}
+
+.article-body {
+  max-inline-size: 42rem;
+  margin-inline: auto;
+  color: var(--color-200);
+  overflow-wrap: anywhere;
+}
+
+.article-body > * + * {
+  margin-block-start: 1.5rem;
+}
+
+.article-body p,
+.article-body li {
+  font-size: clamp(1.125rem, 1.6vw, 1.25rem);
+  line-height: 1.75;
+}
+
+.article-body :is(h2, h3) {
+  margin-block: 2.75rem 1rem;
+  color: var(--color-100);
+}
+
+.article-body blockquote {
+  border-inline-start: 2px solid var(--color-accent);
+  padding-inline-start: 1.5rem;
+  margin-block: 2.5rem;
+  font-size: clamp(1.4rem, 2.4vw, 1.8rem);
+  font-style: italic;
+  line-height: 1.4;
+  color: var(--color-accent);
+}
+
+.article-body blockquote p {
+  font: inherit;
+}
+
+.article-body figure {
+  margin-block: 2.5rem;
+}
+
+.article-body figure img,
+.article-body > img {
+  inline-size: 100%;
+  border-radius: var(--radius-xs);
+}
+
+.article-body a {
+  color: var(--color-accent);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+.article-body ul {
+  list-style: disc;
+  padding-inline-start: 1.5rem;
+}
+
+.article-body ol {
+  padding-inline-start: 1.5rem;
+}
+
+.article-related {
+  border-block-start: 1px solid var(--color-700);
+  padding-block-start: 1.5rem;
+  margin-block-start: 4rem;
+}
+
+.article-related h2 {
+  margin-block-end: 1.5rem;
+}
+
+.article-related-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.5rem;
+}
+
+.article-related .article-card {
+  display: block;
+  overflow: hidden;
+  border: 1px solid var(--color-700);
+  border-radius: var(--radius-xs);
+  background: var(--color-850);
+}
+
+.article-related .article-card > img {
+  inline-size: 100%;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+}
+
+.article-related .article-card > div {
+  padding: 1.25rem;
+}
+
+.article-related .article-card h3 {
+  margin-block: 0.75rem;
+}
+
+.article-back {
+  color: var(--color-accent);
+  font-family: var(--font-ui);
+}
+
+@media (max-width: 640px) {
+  .article-meta > * { padding-inline: 0.6rem; }
+  .article-hero img { aspect-ratio: 3 / 2; }
+  .article-related-grid { grid-template-columns: 1fr; }
+}

@@ -2,6 +2,9 @@ import { CollectionConfig, slugField } from "payload";
 
 export const Articles: CollectionConfig = {
   slug: "articles",
+  access: {
+    read: () => true,
+  },
   admin: {
     useAsTitle: "title",
   },
@@ -13,6 +16,11 @@ export const Articles: CollectionConfig = {
       required: true,
     },
     slugField(),
+    {
+      name: "category",
+      type: "text",
+      defaultValue: "Cinema & Culture",
+    },
     {
       name: "publishedAt",
       label: "Publication Date",
@@ -47,7 +55,10 @@ export const Articles: CollectionConfig = {
     {
       name: "review-body",
       type: "richText",
-      label: "review body",
+      label: "Article Body",
+      admin: {
+        description: "Use Quote for pull quotes and Upload to insert photos into the story.",
+      },
       required: true,
     },
     {

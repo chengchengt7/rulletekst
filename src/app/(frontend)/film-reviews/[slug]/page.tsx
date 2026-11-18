@@ -69,7 +69,7 @@ export default async function ReviewPage({ params }: {
             <div className="title-dice">
               <h2 id="review-title">{review["review-title"]}</h2>
               <img
-                src={`/images/dice-gold/dice-${rating.title}.png`}
+                src={`/images/dice-accent/dice-${rating.title}.png`}
                 alt={`Rated ${rating.title} out of 6`}
                 width={36}
                 height={36}

@@ -1,16 +1,18 @@
 import Link from "next/link";
+import type { Article, Media, User } from "@/payload-types";
 import "./ArticleCard.css";
 
-export default function ArticleCard() {
+export default function ArticleCard({ article }: { article: Article }) {
+  const image = article.heroPhoto as Media;
+  const author = article.journalist as User;
   return (
-    <Link href="/articles/abc" className="article-card">
-      <img src="article.jpg" alt="" />
+    <Link href={`/articles/${article.slug}`} className="article-card">
+      {image?.url && <img src={image.url} alt={image.alt} loading="lazy" />}
       <div className="content">
-        <h4>
-          UK-Ireland box office for 2026 passes totals of every post-pandemic year
-        </h4>
-        <h5>By <span>Chengcheng Teng</span></h5>
+        <p className="article-card__category">{article.category || "Cinema & Culture"}</p>
+        <h4>{article.title}</h4>
+        <h5>By <span>{author?.name || "Rulletekst"}</span></h5>
       </div>
     </Link>
-  )
+  );
 }
