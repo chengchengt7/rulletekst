@@ -1,31 +1,55 @@
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig, PayloadRequest } from "payload";
+
+export const isAdmin = ({ req: { user } }: { req: PayloadRequest }) => user?.role === "admin";
+export const canEditContent = ({ req: { user } }: { req: PayloadRequest }) => user?.role === "admin" || user?.role === "editor";
 
 export const Users: CollectionConfig = {
   slug: "users",
   admin: {
-    useAsTitle: "email",
-    defaultColumns: ["name", "email", "updatedAt"],
+    useAsTitle: "name",
+  },
+  access: {
+    admin: canEditContent,
+    unlock: isAdmin,
+    create: isAdmin,
+    read: ({ req: { user } }) => {
+      if (!user) return false;
+      if (user.role === "admin") return true;
+      return { id: { equals: user.id } };
+    },
+    update: ({ req: { user } }) => {
+      if (!user) return false;
+      if (user.role === "admin") return true;
+      return { id: { equals: user.id } };
+    },
+    delete: isAdmin,
   },
   auth: true,
   fields: [
-    // Email and password are provided by Payload's email-based authentication.
     {
       name: "name",
       type: "text",
       required: true,
-      admin: {
-        description:
-          "The display name for this account. Use your email address to log in.",
-      },
     },
     {
       name: "avatar",
       type: "upload",
       relationTo: "media",
       required: true,
-      filterOptions: {
-        mimeType: { contains: "image/" },
+    },
+    {
+      name: "role",
+      type: "select",
+      access: {
+        update: isAdmin,
       },
+      options: [
+        { label: "Admin", value: "admin" },
+        { label: "Editor", value: "editor" },
+        { label: "Visitor", value: "visitor" },
+      ],
+      required: true,
+      defaultValue: "visitor",
     },
   ],
 };

@@ -266,11 +266,9 @@ export interface Rating {
  */
 export interface User {
   id: number;
-  /**
-   * The display name for this account. Use your email address to log in.
-   */
   name: string;
   avatar: number | Media;
+  role: 'admin' | 'editor' | 'visitor';
   updatedAt: string;
   createdAt: string;
   email: string;
@@ -435,6 +433,7 @@ export interface PayloadMigration {
 export interface UsersSelect<T extends boolean = true> {
   name?: T;
   avatar?: T;
+  role?: T;
   updatedAt?: T;
   createdAt?: T;
   email?: T;

@@ -1,3 +1,7 @@
+import { en } from 'payload/i18n/en';
+import { nb } from "payload/i18n/nb";
+import { zh } from "payload/i18n/zh";
+
 import { postgresAdapter } from '@payloadcms/db-postgres';
 import { lexicalEditor } from '@payloadcms/richtext-lexical';
 import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob';
@@ -62,6 +66,10 @@ const globals: GlobalConfig[] = [
  * gjøre at prosjektet ditt ikke kjører!
  */
 export default buildConfig({
+  i18n: {
+    supportedLanguages: { en, nb, zh },
+    fallbackLanguage: "en",
+  },
   admin: {
     user: Users.slug,
     importMap: {

@@ -2,9 +2,6 @@ import { CollectionConfig, slugField } from "payload";
 
 export const Articles: CollectionConfig = {
   slug: "articles",
-  access: {
-    read: () => true,
-  },
   admin: {
     useAsTitle: "title",
   },
