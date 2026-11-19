@@ -21,6 +21,7 @@ import { Reviews } from './collections/Reviews';
 import { Articles } from './collections/Articles';
 import { Home } from './globals/Home';
 import { ReviewBlock } from './blocks/ReviewBlock';
+import { FilmNights } from './collections/FilmNights';
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
@@ -41,7 +42,7 @@ const collections: CollectionConfig[] = [
   AgeRating,
   Reviews,
   Articles,
-
+  FilmNights
 ];
 
 /**

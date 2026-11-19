@@ -77,6 +77,7 @@ export interface Config {
     'rating-block': RatingBlock;
     reviews: Review;
     articles: Article;
+    'film-nights': FilmNight;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -92,6 +93,7 @@ export interface Config {
     'rating-block': RatingBlockSelect<false> | RatingBlockSelect<true>;
     reviews: ReviewsSelect<false> | ReviewsSelect<true>;
     articles: ArticlesSelect<false> | ArticlesSelect<true>;
+    'film-nights': FilmNightsSelect<false> | FilmNightsSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -330,6 +332,41 @@ export interface Article {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "film-nights".
+ */
+export interface FilmNight {
+  id: number;
+  title: string;
+  /**
+   * When enabled, the slug will auto-generate from the title field on save and autosave.
+   */
+  generateSlug?: boolean | null;
+  slug: string;
+  heroPhoto: number | Media;
+  ticketPhoto: number | Media;
+  director: number | Director;
+  duration: number;
+  ratingBlock: number | RatingBlock;
+  description: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv".
  */
 export interface PayloadKv {
@@ -383,6 +420,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'articles';
         value: number | Article;
+      } | null)
+    | ({
+        relationTo: 'film-nights';
+        value: number | FilmNight;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -549,6 +590,23 @@ export interface ArticlesSelect<T extends boolean = true> {
   'sub-title'?: T;
   'review-body'?: T;
   journalist?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "film-nights_select".
+ */
+export interface FilmNightsSelect<T extends boolean = true> {
+  title?: T;
+  generateSlug?: T;
+  slug?: T;
+  heroPhoto?: T;
+  ticketPhoto?: T;
+  director?: T;
+  duration?: T;
+  ratingBlock?: T;
+  description?: T;
   updatedAt?: T;
   createdAt?: T;
 }
