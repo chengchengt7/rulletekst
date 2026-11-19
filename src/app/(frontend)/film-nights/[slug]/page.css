@@ -26,7 +26,7 @@ main:has(> .film-night) {
 
   > .container {
     display: grid;
-    grid-template-columns: minmax(0, 1.8fr) minmax(0, 1fr);
+    grid-template-columns: auto 25rem;
     gap: 4rem;
     align-items: start;
     margin-block: 4rem 8rem;
@@ -106,27 +106,9 @@ main:has(> .film-night) {
     }
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: 60rem) {
     > .container {
-      grid-template-columns: minmax(0, 1fr);
-      gap: var(--space-l);
-      margin-block: var(--space-l) 4rem;
-    }
-
-    .film-info > div {
-      padding-inline: var(--space-xs);
-    }
-  }
-
-  @media (max-width: 400px) {
-    .film-info {
-      grid-template-columns: minmax(0, 1fr);
-
-      > div + div:not(.cast) {
-        border-inline-start: 0;
-        border-block-start: 1px dashed var(--color-600);
-        padding-block-start: var(--space-s);
-      }
+      grid-template-columns: minmax(0, 1fr);  
     }
   }
 }

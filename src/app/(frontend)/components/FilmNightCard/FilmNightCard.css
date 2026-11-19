@@ -43,4 +43,14 @@
       h4 {font-family: var(--font-ui);}
     }
   }
+
+  
 }
+
+@media (width < 35rem) {
+    .film-night-card {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+
+
