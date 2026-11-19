@@ -30,8 +30,8 @@
     mask-image:
       radial-gradient(circle at top right, transparent 16px, #000 16px),
       radial-gradient(circle at bottom right, transparent 16px, #000 16px),
-      radial-gradient(circle at right center, transparent 4px, #000 4px);
-    mask-size: 100% 100%, 100% 100%, 100% 16px;
+      radial-gradient(circle at right center, transparent 6px, #000 6px);
+    mask-size: 100% 100%, 100% 100%, 100% 24px;
     mask-composite: intersect;
 
     h5 {color: var(--color-accent);}
@@ -52,8 +52,8 @@
       radial-gradient(circle at top right, transparent 16px, #000 16px),
       radial-gradient(circle at bottom left, transparent 16px, #000 16px),
       radial-gradient(circle at bottom right, transparent 16px, #000 16px),
-      radial-gradient(circle at left center, transparent 4px, #000 4px);
-    mask-size: 100% 100%, 100% 100%, 100% 100%, 100% 100%, 100% 16px;
+      radial-gradient(circle at left center, transparent 6px, #000 6px);
+    mask-size: 100% 100%, 100% 100%, 100% 100%, 100% 100%, 100% 24px;
     mask-composite: intersect;
     transform-origin: bottom left;
     transition: transform 300ms ease;

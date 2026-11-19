@@ -1,17 +1,72 @@
 import FilmNightCard from "../FilmNightCard/FilmNightCard";
+import { getPayload } from "payload";
+import config from "@payload-config";
 import "./FilmNights.css";
 
-export default function FilmNights() {
-  return(
+export default async function FilmNights() {
+  const payload = await getPayload({ config });
+  const { docs: hosts } = await payload.find({
+    collection: "users",
+    where: {
+      and: [
+        { name: { equals: "Chengcheng Teng" } }
+      ],
+    },
+    select: { name: true, avatar: true },
+    depth: 1,
+  });
+  const avatar = hosts[0]?.avatar;
+  const hostAvatar = avatar && typeof avatar === "object" ? avatar : null;
+  const name = hosts[0]?.name;
+
+  return (
     <section id="film-nights" className="film-nights">
       <div className="container">
         <h3>Film Nights</h3>
-        <div className="film-nights-content">
-          <p>
-            Great films, good company, and stories that stay with you. Join our film nights to discover something unexpected, share your thoughts, or simply settle in and enjoy. Everyone's welcome—bring your curiosity.
-          </p>
+        <div className="content">
+          <div className="film-nights-intro">
+            <p>
+              Come for the cinema, stay for the company. Our film nights bring
+              curious people together for stories that linger long after the
+              credits. Discover a new favourite, revisit a classic, or simply
+              enjoy an evening away from your own screen. Come on your own or
+              bring a friend — welcome!
+            </p>
+
+            <dl className="film-nights-facts">
+              <div>
+                <dt>
+                  <h5>Where</h5>
+                </dt>
+                <dd>Trondheimsveien 2K, Bygg K, 0560 Oslo</dd>
+              </div>
+              <div>
+                <dt>
+                  <h5>When</h5>
+                </dt>
+                <dd>18:00 door opens, 18:30 film starts, 22:00 door closes.</dd>
+              </div>
+              <div>
+                <dt>
+                  <h5>Ticket</h5>
+                </dt>
+                <dd>
+                  50 kr per person. Your contribution goes towards drinks and
+                  general maintenance, helping us keep these evenings going.
+                </dd>
+              </div>
+            </dl>
+
+            <div className="film-nights-host">
+              {hostAvatar?.url && (
+                <img src={hostAvatar.url} alt="Chengcheng Teng" />
+              )}
+              <div>
+                <h5>Hosted by {name}</h5>
+              </div>
+            </div>
+          </div>
           <div className="card-grid">
-            <FilmNightCard />
             <FilmNightCard />
             <FilmNightCard />
             <FilmNightCard />
@@ -19,5 +74,5 @@ export default function FilmNights() {
         </div>
       </div>
     </section>
-  )
+  );
 }

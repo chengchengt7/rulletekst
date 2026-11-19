@@ -1,32 +1,46 @@
 .film-night-card {
-  display: grid;
-  color: var(--color-900);
-  overflow: hidden;
-  mask-image:
-    radial-gradient(circle at top left, transparent 8px, #000 9px),
-    radial-gradient(circle at top right, transparent 8px, #000 9px),
-    radial-gradient(circle at bottom left, transparent 8px, #000 9px),
-    radial-gradient(circle at bottom right, transparent 8px, #000 9px);
-  mask-composite: intersect;
+ display: grid;
+ grid-template-columns: 1fr 1.5fr;
+ filter:
+    drop-shadow(1px 0 0 var(--color-700))
+    drop-shadow(-1px 0 0 var(--color-700))
+    drop-shadow(0 1px 0 var(--color-700))
+    drop-shadow(0 -1px 0 var(--color-700));
 
   img {
-    display: block;
-    width: 100%;
+    aspect-ratio: 16 / 9;
     object-fit: cover;
     mask-image:
       radial-gradient(circle at bottom left, transparent 8px, #000 9px),
+      radial-gradient(circle at top left, transparent 8px, #000 9px),
+      radial-gradient(circle at top right, transparent 8px, #000 9px),
       radial-gradient(circle at bottom right, transparent 8px, #000 9px);
     mask-composite: intersect;
   }
 
-  .content {
-    background-color: var(--color-300);
+  .card-content {
+    background-color: var(--color-700);
     display: grid;
-    gap: var(--space-xs);
-    padding: var(--space-xs);
+    padding: var(--space-s) var(--space-m);
     mask-image:
       radial-gradient(circle at top left, transparent 8px, #000 9px),
-      radial-gradient(circle at top right, transparent 8px, #000 9px);
+      radial-gradient(circle at bottom left, transparent 8px, #000 9px),
+      radial-gradient(circle at top right, transparent 8px, #000 9px),
+      radial-gradient(circle at bottom right, transparent 8px, #000 9px);
     mask-composite: intersect;
+
+    h5{color: var(--color-accent);}
+
+    h3{font-family: var(--font);}
+
+    .cta {
+      display: flex;
+      margin-top: auto;
+      margin-left: auto;
+      align-items: center;
+      gap: var(--space-xs);
+
+      h4 {font-family: var(--font-ui);}
+    }
   }
 }

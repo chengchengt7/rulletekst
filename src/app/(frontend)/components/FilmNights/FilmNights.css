@@ -1,48 +1,69 @@
 .film-nights {
-    background-color: var(--color-800); 
-    padding-block: 2rem 4rem;
-    position: relative;
-    isolation: isolate;
+  background-color: var(--color-800);
+  padding-block: 4rem 6rem;
 
-    &::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      z-index: -1;
-      background-color: var(--color-800);
-      box-shadow: 0 0 0 100vmax var(--color-800);
-      clip-path: inset(0 -100vmax);
-      pointer-events: none;
-    }
-  
+  .container > h3 {
+    font-family: var(--font-ui);
+    margin-bottom: var(--space-l);
+  }
 
-  .film-nights-content { 
-  border-radius: var(--radius-xxs);
-  padding: var(--space-s);
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-m);
-  margin-top: var(--space-xxs);
+  > .container > .content {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 3rem;
+    align-items: start;
 
-  > p {
-    flex: 1 1 200px;
-    min-width: min(200px, 100%);
-    padding-top: var(--space-s);
-
-    &::first-letter {
-      font-size: 2.5em;
-      line-height: 0.85;
+    > .card-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--space-m);
     }
   }
-  
-  > .card-grid {
+
+  .film-nights-intro {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-    flex: 3 1 calc(560px + 3 * var(--space-s));
-    min-width: min(140px, 100%);
-    max-width: 100%;
+    gap: var(--space-m);
+
+    > h4 {
+      font-size: clamp(1.5rem, 2.5vw, 2rem);
+      font-weight: 500;
+      text-wrap: balance;
+    }
+
+    p, dd {
+      color: var(--color-200);
+      font-size: 1.25rem;
+    }
+  }
+
+  .film-nights-facts {
+    display: grid;
+    gap: var(--space-s);
+    padding-block: var(--space-m);
+    border-block: 1px solid var(--color-700);
+
+    h5 {
+      color: var(--color-accent);
+      margin-bottom: var(--space-xs);
+    }
+  }
+
+  .film-nights-host {
+    display: flex;
+    align-items: center;
     gap: var(--space-s);
 
+    > img {
+      width: 40px;
+      height: 40px;
+      flex-shrink: 0;
+      border-radius: 50%;
+    }
   }
-}
+
+  @media (max-width: 640px) {
+    > .container > .content {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
 }
