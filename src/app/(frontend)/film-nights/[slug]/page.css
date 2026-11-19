@@ -1,0 +1,132 @@
+body:has(.film-night-hero) > header {
+  position: absolute;
+  inset: 0 0 auto;
+  z-index: 1;
+  background: linear-gradient(rgb(0 0 0 / 60%), transparent);
+}
+
+main:has(> .film-night) {
+  inline-size: 100%;
+}
+
+.film-night {
+  h1 {
+    margin-block: 4rem;
+    text-align: center;
+  }
+
+  p, dd {font-size: 1.25rem;}
+
+
+  .film-night-hero {
+    inline-size: 100%;
+    aspect-ratio: 16/5;
+    object-fit: cover;
+  }
+
+  > .container {
+    display: grid;
+    grid-template-columns: minmax(0, 1.8fr) minmax(0, 1fr);
+    gap: 4rem;
+    align-items: start;
+    margin-block: 4rem 8rem;
+  }
+  
+
+  > .container > .content {
+    display: grid;
+    gap: var(--space-m);
+    min-width: 0;
+
+    > * + * {margin-top: var(--space-m);}
+  }
+
+  .film-info {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    border-block: 1px dashed var(--color-600);
+
+    > div {
+      margin-block: var(--space-s);
+      padding-inline: var(--space-m);
+    }
+
+    > div + div:not(.cast) {
+      border-inline-start: 1px dashed var(--color-600);
+    }
+
+    dt {
+      margin-block-end: var(--space-s);
+      color: var(--color-300);
+    }
+
+    dd {
+      text-transform: uppercase;
+    }
+  }
+
+  .film-nights-facts {
+    display: grid;
+    gap: var(--space-s);
+
+    h5 {
+      color: var(--color-accent);
+      margin-bottom: var(--space-xs);
+    }
+  }
+
+  .form {
+    display: grid;
+    gap: var(--space-s);
+    padding: var(--space-s);
+    background-color: var(--color-850);
+    border-radius: var(--radius-xs);
+    border: 1px solid var(--color-700);
+
+    > h5 {color: var(--color-accent);}
+
+    span {
+      font-family: var(--font-ui);
+      margin-bottom: var(--space-xs);
+    }
+
+    label {
+      display: grid;
+    }
+
+    input {
+      width: 100%;
+      min-width: 0;
+    }
+
+    p:last-child {
+      font-size: 1rem;
+      color: var(--color-300);
+      text-align: center;
+    }
+  }
+
+  @media (max-width: 768px) {
+    > .container {
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--space-l);
+      margin-block: var(--space-l) 4rem;
+    }
+
+    .film-info > div {
+      padding-inline: var(--space-xs);
+    }
+  }
+
+  @media (max-width: 400px) {
+    .film-info {
+      grid-template-columns: minmax(0, 1fr);
+
+      > div + div:not(.cast) {
+        border-inline-start: 0;
+        border-block-start: 1px dashed var(--color-600);
+        padding-block-start: var(--space-s);
+      }
+    }
+  }
+}

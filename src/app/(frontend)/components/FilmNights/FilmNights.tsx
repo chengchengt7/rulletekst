@@ -42,7 +42,7 @@ export default async function FilmNights() {
               </div>
               <div>
                 <dt>
-                  <h5>When</h5>
+                  <h5>Agenda</h5>
                 </dt>
                 <dd>18:00 door opens, 18:30 film starts, 22:00 door closes.</dd>
               </div>
