@@ -1,0 +1,79 @@
+.gallery {
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  gap: var(--space-l);
+  overflow: clip;
+  margin-block: 8rem;
+  view-timeline: --gallery block;
+  mask-image:
+    linear-gradient(to right, var(--gallery-edge, rgb(0 0 0 / 15%)), #000 18%, #000 82%, var(--gallery-edge, rgb(0 0 0 / 15%))),
+    linear-gradient(to bottom, transparent, #000 var(--gallery-fade, 0%), #000 calc(100% - var(--gallery-fade, 0%)), transparent);
+  mask-composite: intersect;
+
+  .gallery-row {
+    display: flex;
+    gap: inherit;
+    inline-size: max-content;
+  }
+
+  img {
+    flex: none;
+    filter: brightness(var(--gallery-brightness, 0.6));
+    inline-size: 20rem;
+    aspect-ratio: 3 / 2;
+    object-fit: cover;
+    border-radius: var(--radius-s);
+  }
+}
+
+.gallery--background {
+  --gallery-edge: transparent;
+  --gallery-fade: 20%;
+  --gallery-brightness: 1;
+  position: absolute;
+  inset-block-start: 6rem;
+  inset-inline: calc((100% - 100vw) / 2);
+  z-index: -1;
+  margin: 0;
+  opacity: 0.25;
+  pointer-events: none;
+
+   img {
+    inline-size: 14rem;
+  }
+}
+
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .gallery-row {
+      animation: gallery-drift linear both;
+      animation-timeline: --gallery;
+      animation-range: entry 0% exit 100%;
+    }
+
+    .gallery-row:nth-child(2) {
+      animation-direction: reverse;
+    }
+  }
+}
+
+@keyframes gallery-drift {
+  from {
+    transform: translateX(-8%);
+  }
+
+  to {
+    transform: translateX(0);
+  }
+}
+
+@media (width < 40rem) {
+  .gallery {
+    gap: var(--space-s);
+
+    img {
+      inline-size: 12rem;
+    }
+  }
+}

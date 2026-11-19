@@ -3,6 +3,9 @@
   margin-inline: auto;
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr) 9rem;
+  z-index: 2;
+  position: relative;
+  background: var(--color-900);
 
   .poster {
     aspect-ratio: 16 / 9;

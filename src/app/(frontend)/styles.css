@@ -168,7 +168,15 @@ textarea {
 /* ------- home page ------- */
 
 .home-page {
+  overflow: clip;
+
    & > * + * {
     margin-block-start: var(--space-l);
   }
+}
+
+.home-gallery-area {
+  position: relative;
+  isolation: isolate;
+  display: flow-root;
 }

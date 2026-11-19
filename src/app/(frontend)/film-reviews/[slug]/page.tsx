@@ -1,3 +1,4 @@
+import Gallery from "../../components/Gallery/Gallery";
 import { RichText } from "@payloadcms/richtext-lexical/react";
 import config from "@payload-config";
 import { notFound } from "next/navigation";
@@ -28,8 +29,6 @@ export default async function ReviewPage({ params }: {
   const avatar = journalist.avatar as Media;
   const actors = review.actors as Actor[];
   const gallery = review.gallery as Media[];
-  const middle = Math.ceil(gallery.length / 2);
-  const galleryRows = [gallery.slice(0, middle), gallery.slice(middle)].filter(row => row.length);
 
   return (
     <div className="review-page">
@@ -85,15 +84,7 @@ export default async function ReviewPage({ params }: {
         </section>
       </div>
 
-      <section className="gallery">
-        {galleryRows.map((row, index) => (
-          <div className="gallery-row" key={index}>
-            {row.map((image) => (
-              <img key={image.id} src={image.url!} alt={image.alt} loading="lazy" decoding="async" />
-            ))}
-          </div>
-        ))}
-      </section>
+      <Gallery images={gallery} />
     </div>
   );
 }

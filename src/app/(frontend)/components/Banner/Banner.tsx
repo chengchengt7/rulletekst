@@ -6,7 +6,7 @@ export default function Banner() {
   return (
     <article className="film-night-banner">
       <div className="poster">
-        <img src="/farewell-my-concubine.webp" alt="film poster" />
+        <img src="/hero-movie.jpg" alt="film poster" />
       </div>
       <div className="content">
         <h5>Next film night</h5>

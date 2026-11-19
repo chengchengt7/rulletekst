@@ -97,66 +97,6 @@ body:has(.review-page) > header {
   }
 }
 
-  .gallery {
-  position: relative;
-  isolation: isolate;
-  display: grid;
-  gap: var(--space-l);
-  overflow: clip;
-  margin-block: 8rem;
-  view-timeline: --gallery block;
-
-  &::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    z-index: 1;
-    background: linear-gradient(
-      to right,
-      rgb(0 0 0 / 85%),
-      transparent 18%,
-      transparent 82%,
-      rgb(0 0 0 / 85%)
-    );
-    pointer-events: none;
-  }
-
-  .gallery-row {
-    display: flex;
-    gap: var(--space-l);
-    inline-size: max-content;
-  }
-
-  img {
-    flex: none;
-    filter: brightness(0.6);
-    inline-size: 20rem;
-    aspect-ratio: 3/2;
-    object-fit: cover;
-    border-radius: var(--radius-s);
-  }
-}
-
-  @supports (animation-timeline: view()) {
-    @media (prefers-reduced-motion: no-preference) {
-      .gallery-row {
-        animation: gallery-drift linear both;
-        animation-timeline: --gallery;
-        animation-range: entry 0% exit 100%;
-
-        &:nth-child(2) {
-          animation-direction: reverse;
-        }
-      }
-    }
-  }
-
-
-@keyframes gallery-drift {
-  from { transform: translateX(-8%); }
-  to { transform: translateX(0); }
-}
-
 @media (width < 40rem) {
 
   .review-page {
@@ -175,13 +115,4 @@ body:has(.review-page) > header {
   }
   
   .review-page .film-info dd {font-size: 1rem;}
-
-
-  .gallery {
-    gap: var(--space-s);
-
-    .gallery-row {gap: var(--space-s);}
-
-    img {inline-size: 12rem;}
-  }
 }
