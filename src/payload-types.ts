@@ -342,6 +342,7 @@ export interface FilmNight {
    */
   generateSlug?: boolean | null;
   slug: string;
+  'event-date'?: string | null;
   heroPhoto: number | Media;
   ticketPhoto: number | Media;
   director: number | Director;
@@ -601,6 +602,7 @@ export interface FilmNightsSelect<T extends boolean = true> {
   title?: T;
   generateSlug?: T;
   slug?: T;
+  'event-date'?: T;
   heroPhoto?: T;
   ticketPhoto?: T;
   director?: T;

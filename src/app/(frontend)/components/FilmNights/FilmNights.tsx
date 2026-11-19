@@ -5,16 +5,16 @@ import "./FilmNights.css";
 
 export default async function FilmNights() {
   const payload = await getPayload({ config });
-  const { docs: hosts } = await payload.find({
-    collection: "users",
-    where: {
-      and: [
-        { name: { equals: "Chengcheng Teng" } }
-      ],
-    },
-    select: { name: true, avatar: true },
-    depth: 1,
-  });
+  const [{ docs: hosts }, { docs: filmNights }] = await Promise.all([
+    payload.find({
+      collection: "users",
+      where: { name: { equals: "Chengcheng Teng" } },
+      select: { name: true, avatar: true },
+      depth: 1,
+      limit: 1,
+    }),
+    payload.find({ collection: "film-nights", depth: 1, sort: "event-date", limit: 3 }),
+  ]);
   const avatar = hosts[0]?.avatar;
   const hostAvatar = avatar && typeof avatar === "object" ? avatar : null;
   const name = hosts[0]?.name;
@@ -67,9 +67,9 @@ export default async function FilmNights() {
             </div>
           </div>
           <div className="card-grid">
-            <FilmNightCard />
-            <FilmNightCard />
-            <FilmNightCard />
+            {filmNights.map((filmNight) => (
+              <FilmNightCard key={filmNight.id} filmNight={filmNight} />
+            ))}
           </div>
         </div>
       </div>

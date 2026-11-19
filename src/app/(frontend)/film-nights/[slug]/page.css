@@ -22,6 +22,7 @@ main:has(> .film-night) {
     inline-size: 100%;
     aspect-ratio: 16/5;
     object-fit: cover;
+    filter: brightness(0.7);
   }
 
   > .container {

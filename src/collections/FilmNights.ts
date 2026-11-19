@@ -14,6 +14,12 @@ export const FilmNights: CollectionConfig = {
     },
     slugField(),
     {
+      name: "event-date",
+      label: "Event date",
+      type: "date",
+      admin: { date: { pickerAppearance: "dayOnly" } },
+    },
+    {
       name: "heroPhoto",
       label: "Hero Photo",
       type: "upload",
