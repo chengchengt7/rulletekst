@@ -3,9 +3,12 @@
   margin-inline: auto;
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr) 9rem;
-  z-index: 2;
   position: relative;
-  background: var(--color-900);
+  filter:
+    drop-shadow(1px 0 0 var(--color-700))
+    drop-shadow(-1px 0 0 var(--color-700))
+    drop-shadow(0 1px 0 var(--color-700))
+    drop-shadow(0 -1px 0 var(--color-700));
 
   .poster {
     aspect-ratio: 16 / 9;
