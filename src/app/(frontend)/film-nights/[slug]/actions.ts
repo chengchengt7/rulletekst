@@ -15,7 +15,7 @@ export type ReservationState = {
 
 export async function reserveSeat(filmNight: number, _state: ReservationState, form: FormData): Promise<ReservationState> {
   const name = String(form.get("name") ?? "");
-  const email = String(form.get("email") ?? "");
+  const email = String(form.get("email") ?? "").toLowerCase();
   const ageInput = String(form.get("age") ?? "").trim();
   const age = Number(ageInput);
   const fail = (error: string): ReservationState => ({ error, success: false, values: { name, email, age: ageInput } });

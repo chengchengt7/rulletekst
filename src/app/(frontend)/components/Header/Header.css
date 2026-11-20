@@ -1,10 +1,14 @@
 header {
+  position: relative;
+  z-index: 2;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 1rem 2rem;
 
   img {width: 90px;}
+
+  > a {flex-shrink: 0;}
   
   ul {
     display: flex;
@@ -15,6 +19,52 @@ header {
       font-family: var(--font-ui);
       letter-spacing: 0.03rem;
       font-weight: 500;
+    }
+  }
+}
+
+.menu-toggle {
+  display: none;
+}
+
+@media (max-width: 48rem) {
+  header {
+    padding-inline: var(--space-s);
+
+    .menu-toggle {
+      display: grid;
+      place-items: center;
+      width: 44px;
+      height: 44px;
+      padding: 0;
+      border: 0;
+      background: transparent;
+      color: var(--color-accent);
+      font-size: 1.75rem;
+      cursor: pointer;
+    }
+
+    nav {
+      display: none;
+      position: absolute;
+      inset: 100% 0 auto;
+      padding: var(--space-xs) var(--space-s);
+      background: var(--color-850);
+      border-bottom: 1px solid var(--color-700);
+
+      &.is-open {display: block;}
+    }
+
+    ul {
+      flex-direction: column;
+      align-items: stretch;
+
+      a {display: block;}
+    }
+
+    .header-tickets-list {
+      position: static;
+      width: 100%;
     }
   }
 }
