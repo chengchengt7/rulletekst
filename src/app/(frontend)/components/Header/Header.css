@@ -8,6 +8,7 @@ header {
   
   ul {
     display: flex;
+    align-items: center;
      
     a{
       padding: 1rem;
@@ -15,5 +16,42 @@ header {
       letter-spacing: 0.03rem;
       font-weight: 500;
     }
+  }
+}
+
+.header-tickets {
+  position: relative;
+  font-family: var(--font-ui);
+
+  summary {
+    padding: 1rem;
+    cursor: pointer;
+    font-weight: 500;
+    letter-spacing: 0.03rem;
+  }
+}
+
+.header-tickets-list {
+  position: absolute;
+  z-index: 2;
+  right: 0;
+  top: 100%;
+  width: min(22rem, calc(100vw - 2rem));
+  padding: var(--space-s);
+  background: var(--color-850);
+  border: 1px solid var(--color-700);
+  border-radius: var(--radius-xs);
+  display: grid;
+  gap: var(--space-s);
+
+  a {
+    display: grid;
+    gap: var(--space-xxs);
+    padding: 0;
+  }
+
+  span {
+    font-size: 0.875rem;
+    color: var(--color-300);
   }
 }

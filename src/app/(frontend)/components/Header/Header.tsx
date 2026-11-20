@@ -1,5 +1,5 @@
 import Link from "next/link";
-import Image from "next/image";
+import HeaderTickets from "./HeaderTickets";
 import "./Header.css";
 
 export default function Header() {
@@ -16,7 +16,7 @@ export default function Header() {
           <li><Link href="/articles">Articles</Link></li>
           <li><Link href="/film-reviews">Reviews</Link></li>
           <li><a href="/#film-nights">Film Nights</a></li>
-          <li><Link href="#">Ticket</Link></li>
+          <li><HeaderTickets /></li>
           </ul>
         </nav>
     </header>

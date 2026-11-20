@@ -78,6 +78,7 @@ export interface Config {
     reviews: Review;
     articles: Article;
     'film-nights': FilmNight;
+    reservations: Reservation;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -94,6 +95,7 @@ export interface Config {
     reviews: ReviewsSelect<false> | ReviewsSelect<true>;
     articles: ArticlesSelect<false> | ArticlesSelect<true>;
     'film-nights': FilmNightsSelect<false> | FilmNightsSelect<true>;
+    reservations: ReservationsSelect<false> | ReservationsSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -368,6 +370,20 @@ export interface FilmNight {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "reservations".
+ */
+export interface Reservation {
+  id: number;
+  name: string;
+  email: string;
+  age: number;
+  filmNight: number | FilmNight;
+  visitorHash: string;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv".
  */
 export interface PayloadKv {
@@ -425,6 +441,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'film-nights';
         value: number | FilmNight;
+      } | null)
+    | ({
+        relationTo: 'reservations';
+        value: number | Reservation;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -609,6 +629,19 @@ export interface FilmNightsSelect<T extends boolean = true> {
   duration?: T;
   ratingBlock?: T;
   description?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "reservations_select".
+ */
+export interface ReservationsSelect<T extends boolean = true> {
+  name?: T;
+  email?: T;
+  age?: T;
+  filmNight?: T;
+  visitorHash?: T;
   updatedAt?: T;
   createdAt?: T;
 }

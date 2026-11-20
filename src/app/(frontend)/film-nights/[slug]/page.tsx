@@ -3,6 +3,8 @@ import { getPayload } from "payload";
 import { notFound } from "next/navigation";
 import config from "@payload-config";
 import type { Director, Media, RatingBlock } from "@/payload-types";
+import ReservationForm from "./ReservationForm";
+import { getReservedFilms } from "@/lib/reservations";
 import "./page.css";
 
 
@@ -21,6 +23,7 @@ export default async function FilmNight({
   });
   const filmNight = docs[0];
   if (!filmNight) notFound();
+  const tickets = await getReservedFilms();
 
   const hero = filmNight.heroPhoto as Media;
   const director = filmNight.director as Director;
@@ -89,27 +92,12 @@ export default async function FilmNight({
             </div>
           </dl>
         </div>
-        <form className="form">
-          <h5>Join the film night</h5>
-          <p>{dateLabel && `${dateLabel} · `}Film starts 18:30</p>
-          <p>50 kr per person · Pay at the door</p>
-          <label>
-            <span>Name</span>
-            <input type="text" required></input>
-          </label>
-          <label>
-            <span>E-mail</span>
-            <input type="email" required></input>
-          </label>
-          <label>
-            <span>Age</span>
-            <input type="number" required></input>
-          </label>
-          <button type="submit" className="button">
-            Reserve my seat
-          </button>
-          <p>No online payment required.</p>
-        </form>
+        <ReservationForm
+          filmNight={filmNight.id}
+          title={filmNight.title}
+          date={dateLabel}
+          reserved={tickets.some(ticket => ticket.id === filmNight.id)}
+        />
       </div>
     </div>
   );
