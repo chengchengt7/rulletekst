@@ -66,7 +66,10 @@ export interface Config {
     users: UserAuthOperations;
   };
   blocks: {
+    banner: BannerBlock;
+    articleCards: ArticleCardsBlock;
     reviewCards: ReviewCardsBlock;
+    filmNights: FilmNightsBlock;
   };
   collections: {
     users: User;
@@ -141,6 +144,183 @@ export interface UserAuthOperations {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "BannerBlock".
+ */
+export interface BannerBlock {
+  /**
+   * Choose one film night to display in the banner.
+   */
+  filmNight: number | FilmNight;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'banner';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "film-nights".
+ */
+export interface FilmNight {
+  id: number;
+  title: string;
+  /**
+   * When enabled, the slug will auto-generate from the title field on save and autosave.
+   */
+  generateSlug?: boolean | null;
+  slug: string;
+  'event-date'?: string | null;
+  heroPhoto: number | Media;
+  ticketPhoto: number | Media;
+  director: number | Director;
+  duration: number;
+  ratingBlock: number | RatingBlock;
+  description: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "media".
+ */
+export interface Media {
+  id: number;
+  alt: string;
+  prefix?: string | null;
+  _objectKey?: string | null;
+  updatedAt: string;
+  createdAt: string;
+  url?: string | null;
+  thumbnailURL?: string | null;
+  filename?: string | null;
+  mimeType?: string | null;
+  filesize?: number | null;
+  width?: number | null;
+  height?: number | null;
+  focalX?: number | null;
+  focalY?: number | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "directors".
+ */
+export interface Director {
+  id: number;
+  title: string;
+  /**
+   * When enabled, the slug will auto-generate from the title field on save and autosave.
+   */
+  generateSlug?: boolean | null;
+  slug: string;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "rating-block".
+ */
+export interface RatingBlock {
+  id: number;
+  title: string;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ArticleCardsBlock".
+ */
+export interface ArticleCardsBlock {
+  title: string;
+  /**
+   * Select six articles in the order they should appear.
+   */
+  articles: (number | Article)[];
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'articleCards';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "articles".
+ */
+export interface Article {
+  id: number;
+  title: string;
+  /**
+   * When enabled, the slug will auto-generate from the title field on save and autosave.
+   */
+  generateSlug?: boolean | null;
+  slug: string;
+  category?: string | null;
+  publishedAt?: string | null;
+  heroPhoto: number | Media;
+  gallery?: (number | Media)[] | null;
+  'sub-title': string;
+  /**
+   * Use Quote for pull quotes and Upload to insert photos into the story.
+   */
+  'review-body': {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  journalist: number | User;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "users".
+ */
+export interface User {
+  id: number;
+  name: string;
+  avatar: number | Media;
+  role: 'admin' | 'editor' | 'visitor';
+  updatedAt: string;
+  createdAt: string;
+  email: string;
+  resetPasswordToken?: string | null;
+  resetPasswordExpiration?: string | null;
+  salt?: string | null;
+  hash?: string | null;
+  resetPasswordRequestedAt?: string | null;
+  loginAttempts?: number | null;
+  lockUntil?: string | null;
+  sessions?:
+    | {
+        id: string;
+        createdAt?: string | null;
+        expiresAt: string;
+      }[]
+    | null;
+  password?: string | null;
+  collection: 'users';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "ReviewCardsBlock".
  */
 export interface ReviewCardsBlock {
@@ -195,52 +375,6 @@ export interface Review {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "media".
- */
-export interface Media {
-  id: number;
-  alt: string;
-  prefix?: string | null;
-  _objectKey?: string | null;
-  updatedAt: string;
-  createdAt: string;
-  url?: string | null;
-  thumbnailURL?: string | null;
-  filename?: string | null;
-  mimeType?: string | null;
-  filesize?: number | null;
-  width?: number | null;
-  height?: number | null;
-  focalX?: number | null;
-  focalY?: number | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "directors".
- */
-export interface Director {
-  id: number;
-  title: string;
-  /**
-   * When enabled, the slug will auto-generate from the title field on save and autosave.
-   */
-  generateSlug?: boolean | null;
-  slug: string;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "rating-block".
- */
-export interface RatingBlock {
-  id: number;
-  title: string;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "actors".
  */
 export interface Actor {
@@ -266,107 +400,16 @@ export interface Rating {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "users".
+ * via the `definition` "FilmNightsBlock".
  */
-export interface User {
-  id: number;
-  name: string;
-  avatar: number | Media;
-  role: 'admin' | 'editor' | 'visitor';
-  updatedAt: string;
-  createdAt: string;
-  email: string;
-  resetPasswordToken?: string | null;
-  resetPasswordExpiration?: string | null;
-  salt?: string | null;
-  hash?: string | null;
-  resetPasswordRequestedAt?: string | null;
-  loginAttempts?: number | null;
-  lockUntil?: string | null;
-  sessions?:
-    | {
-        id: string;
-        createdAt?: string | null;
-        expiresAt: string;
-      }[]
-    | null;
-  password?: string | null;
-  collection: 'users';
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "articles".
- */
-export interface Article {
-  id: number;
-  title: string;
+export interface FilmNightsBlock {
   /**
-   * When enabled, the slug will auto-generate from the title field on save and autosave.
+   * Choose three film nights in the order they should appear.
    */
-  generateSlug?: boolean | null;
-  slug: string;
-  category?: string | null;
-  publishedAt?: string | null;
-  heroPhoto: number | Media;
-  gallery?: (number | Media)[] | null;
-  'sub-title': string;
-  /**
-   * Use Quote for pull quotes and Upload to insert photos into the story.
-   */
-  'review-body': {
-    root: {
-      type: string;
-      children: {
-        type: any;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  };
-  journalist: number | User;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "film-nights".
- */
-export interface FilmNight {
-  id: number;
-  title: string;
-  /**
-   * When enabled, the slug will auto-generate from the title field on save and autosave.
-   */
-  generateSlug?: boolean | null;
-  slug: string;
-  'event-date'?: string | null;
-  heroPhoto: number | Media;
-  ticketPhoto: number | Media;
-  director: number | Director;
-  duration: number;
-  ratingBlock: number | RatingBlock;
-  description: {
-    root: {
-      type: string;
-      children: {
-        type: any;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  };
-  updatedAt: string;
-  createdAt: string;
+  filmNights: (number | FilmNight)[];
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'filmNights';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -691,7 +734,7 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
  */
 export interface Home {
   id: number;
-  layout: ReviewCardsBlock[];
+  layout: (BannerBlock | ArticleCardsBlock | ReviewCardsBlock | FilmNightsBlock)[];
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -703,11 +746,33 @@ export interface HomeSelect<T extends boolean = true> {
   layout?:
     | T
     | {
+        banner?: T | BannerBlockSelect<T>;
+        articleCards?: T | ArticleCardsBlockSelect<T>;
         reviewCards?: T | ReviewCardsBlockSelect<T>;
+        filmNights?: T | FilmNightsBlockSelect<T>;
       };
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "BannerBlock_select".
+ */
+export interface BannerBlockSelect<T extends boolean = true> {
+  filmNight?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ArticleCardsBlock_select".
+ */
+export interface ArticleCardsBlockSelect<T extends boolean = true> {
+  title?: T;
+  articles?: T;
+  id?: T;
+  blockName?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -716,6 +781,15 @@ export interface HomeSelect<T extends boolean = true> {
 export interface ReviewCardsBlockSelect<T extends boolean = true> {
   title?: T;
   reviews?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "FilmNightsBlock_select".
+ */
+export interface FilmNightsBlockSelect<T extends boolean = true> {
+  filmNights?: T;
   id?: T;
   blockName?: T;
 }

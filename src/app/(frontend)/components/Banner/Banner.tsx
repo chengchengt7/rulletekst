@@ -1,22 +1,11 @@
 import "./Banner.css";
 import Link from "next/link";
-import { getPayload } from "payload";
 import { convertLexicalToPlaintext } from "@payloadcms/richtext-lexical/plaintext";
-import config from "@payload-config";
-import type { Media } from "@/payload-types";
+import type { BannerBlock, FilmNight, Media } from "@/payload-types";
 import ArrowIcon from "../ArrowIcon";
 
-export default async function Banner() {
-  const payload = await getPayload({ config });
-  const { docs } = await payload.find({
-    collection: "film-nights",
-    sort: "event-date",
-    limit: 1,
-    depth: 1,
-  });
-  const filmNight = docs[0];
-  if (!filmNight) return null;
-
+export default function Banner({ block }: { block: BannerBlock }) {
+  const filmNight = block.filmNight as FilmNight;
   const photo = filmNight.ticketPhoto as Media;
   const date = filmNight["event-date"];
   const description = convertLexicalToPlaintext({ data: filmNight.description }).split("\n")[0];

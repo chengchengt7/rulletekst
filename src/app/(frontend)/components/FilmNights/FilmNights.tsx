@@ -1,20 +1,19 @@
 import FilmNightCard from "../FilmNightCard/FilmNightCard";
 import { getPayload } from "payload";
 import config from "@payload-config";
+import type { FilmNight, FilmNightsBlock } from "@/payload-types";
 import "./FilmNights.css";
 
-export default async function FilmNights() {
+export default async function FilmNights({ block }: { block: FilmNightsBlock }) {
   const payload = await getPayload({ config });
-  const [{ docs: hosts }, { docs: filmNights }] = await Promise.all([
-    payload.find({
-      collection: "users",
-      where: { name: { equals: "Chengcheng Teng" } },
-      select: { name: true, avatar: true },
-      depth: 1,
-      limit: 1,
-    }),
-    payload.find({ collection: "film-nights", depth: 1, sort: "event-date", limit: 3 }),
-  ]);
+  const { docs: hosts } = await payload.find({
+    collection: "users",
+    where: { name: { equals: "Chengcheng Teng" } },
+    select: { name: true, avatar: true },
+    depth: 1,
+    limit: 1,
+  });
+  const filmNights = block.filmNights as FilmNight[];
   const avatar = hosts[0]?.avatar;
   const hostAvatar = avatar && typeof avatar === "object" ? avatar : null;
   const name = hosts[0]?.name;

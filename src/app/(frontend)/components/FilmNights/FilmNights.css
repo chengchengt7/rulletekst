@@ -1,4 +1,6 @@
 .film-nights {
+  inline-size: 100vw;
+  margin-inline: calc((100% - 100vw) / 2);
   background-color: var(--color-800);
   padding-block: 4rem 6rem;
 

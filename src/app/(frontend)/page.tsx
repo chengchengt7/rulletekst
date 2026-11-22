@@ -7,17 +7,10 @@ import ArticleCard from "./components/ArticleCard/ArticleCard";
 import ReviewCard from "./components/ReviewCard/ReviewCard";
 import { getPayload } from "payload";
 import config from "@payload-config";
-import type { Media, Review } from "@/payload-types";
+import type { Article, Media, Review } from "@/payload-types";
 
 export default async function HomePage() {
   const payload = await getPayload({ config });
-  const { docs: articles } = await payload.find({
-    collection: "articles",
-    sort: "-publishedAt",
-    limit: 6,
-    depth: 1,
-    populate: { users: { name: true } },
-  });
   const home = await payload.findGlobal({
     slug: "home",
     depth: 2,
@@ -35,24 +28,33 @@ export default async function HomePage() {
     },
   });
 
-  const photos = [
-    ...home.layout.flatMap((block) => (block.reviews as Review[]).map((review) => review.heroPhoto as Media)),
-    ...articles.map((article) => article.heroPhoto as Media),
-  ];
+  const { docs: reviews } = await payload.find({
+    collection: "reviews",
+    depth: 1,
+    pagination: false,
+    select: { heroPhoto: true },
+  });
+  const photos = reviews.map((review) => review.heroPhoto as Media);
+  const firstBlock = home.layout[0];
 
   return (
     <div className="home-page">
       <div className="container">
-        <Banner />
+        {firstBlock?.blockType === "banner" && <Banner block={firstBlock} />}
         <div className="home-gallery-area">
           <Gallery images={photos} background />
           <Slogan />
-          {articles.length > 0 && (
-            <CardRow title="Articles" href="/articles">
-              {articles.map((article) => <ArticleCard key={article.id} article={article} />)}
+          {home.layout.slice(firstBlock?.blockType === "banner" ? 1 : 0).map((block) => block.blockType === "banner" ? (
+            <Banner key={block.id} block={block} />
+          ) : block.blockType === "filmNights" ? (
+            <FilmNights key={block.id} block={block} />
+          ) : block.blockType === "articleCards" ? (
+            <CardRow key={block.id} title={block.title} href="/articles">
+              {(block.articles as Article[]).map((article) => (
+                <ArticleCard key={article.id} article={article} />
+              ))}
             </CardRow>
-          )}
-          {home.layout.map((block) => (
+          ) : (
             <CardRow key={block.id} title={block.title} href="/film-reviews">
               {(block.reviews as Review[]).map((review) => (
                 <ReviewCard key={review.id} review={review} />
@@ -61,7 +63,6 @@ export default async function HomePage() {
           ))}
         </div>
       </div>
-      <FilmNights />
     </div>
   );
 }

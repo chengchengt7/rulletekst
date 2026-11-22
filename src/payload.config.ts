@@ -19,8 +19,11 @@ import { Rating } from './collections/Rating';
 import { AgeRating } from './collections/Age-rating';
 import { Reviews } from './collections/Reviews';
 import { Articles } from './collections/Articles';
-import { Home } from './globals/Home';
+import { HomePage } from './globals/HomePage';
 import { ReviewBlock } from './blocks/ReviewBlock';
+import { BannerBlock } from './blocks/BannerBlock';
+import { FilmNightsBlock } from './blocks/FilmNightsBlock';
+import { ArticleBlock } from './blocks/ArticleBlock';
 import { FilmNights } from './collections/FilmNights';
 import { Reservations } from './collections/Reservations';
 
@@ -52,12 +55,15 @@ const collections: CollectionConfig[] = [
  * Legg blokker inn i dette arrayet for å inkludere dem.
  */
 const blocks: Block[] = [
+  BannerBlock,
+  ArticleBlock,
   ReviewBlock,
+  FilmNightsBlock,
 
 ];
 
 const globals: GlobalConfig[] = [
-  Home
+  HomePage
 ];
 
 
@@ -81,7 +87,7 @@ export default buildConfig({
   },
   blocks,
   collections,
-  globals: [Home],
+  globals,
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {
