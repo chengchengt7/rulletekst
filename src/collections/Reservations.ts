@@ -28,7 +28,6 @@ export const Reservations: CollectionConfig = {
       type: "number",
       required: true,
       min: 0,
-      validate: (value: unknown) => Number.isInteger(value) || "Age must be a whole number.",
     },
     {
       name: "filmNight",

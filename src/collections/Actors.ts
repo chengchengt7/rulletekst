@@ -1,4 +1,4 @@
-import { CollectionConfig, slugField } from "payload";
+import { CollectionConfig } from "payload";
 
 export const Actors: CollectionConfig = {
   slug: "actors",
@@ -12,6 +12,5 @@ export const Actors: CollectionConfig = {
       label: "Name",
       required: true,
     },
-    slugField(),
   ],
 };

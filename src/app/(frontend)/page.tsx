@@ -12,7 +12,7 @@ import type { Article, Media, Review } from "@/payload-types";
 export default async function HomePage() {
   const payload = await getPayload({ config });
   const home = await payload.findGlobal({
-    slug: "home",
+    slug: "homepage",
     depth: 2,
     populate: {
       reviews: {
@@ -46,7 +46,7 @@ export default async function HomePage() {
           <Slogan />
           {home.layout.slice(firstBlock?.blockType === "banner" ? 1 : 0).map((block) => block.blockType === "banner" ? (
             <Banner key={block.id} block={block} />
-          ) : block.blockType === "filmNights" ? (
+          ) : block.blockType === "film-nights" ? (
             <FilmNights key={block.id} block={block} />
           ) : block.blockType === "articleCards" ? (
             <CardRow key={block.id} title={block.title} href="/articles">

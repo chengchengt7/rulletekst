@@ -15,8 +15,6 @@ import { Users } from './collections/Users';
 import { Media } from './collections/Media';
 import { Directors } from './collections/Directors';
 import { Actors } from './collections/Actors';
-import { Rating } from './collections/Rating';
-import { AgeRating } from './collections/Age-rating';
 import { Reviews } from './collections/Reviews';
 import { Articles } from './collections/Articles';
 import { HomePage } from './globals/HomePage';
@@ -42,8 +40,6 @@ const collections: CollectionConfig[] = [
   Media,
   Directors,
   Actors,
-  Rating,
-  AgeRating,
   Reviews,
   Articles,
   FilmNights,

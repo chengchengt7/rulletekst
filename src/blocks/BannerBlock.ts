@@ -3,10 +3,9 @@ import type { Block } from "payload";
 export const BannerBlock: Block = {
   slug: "banner",
   interfaceName: "BannerBlock",
-  labels: { singular: "Banner", plural: "Banners" },
   fields: [
     {
-      name: "filmNight",
+      name: "bannerFilmNight",
       type: "relationship",
       relationTo: "film-nights",
       hasMany: false,

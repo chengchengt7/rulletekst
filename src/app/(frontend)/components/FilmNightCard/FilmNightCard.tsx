@@ -4,7 +4,7 @@ import "./FilmNightCard.css";
 import ArrowIcon from "../ArrowIcon";
 
 export default function FilmNightCard({ filmNight }: { filmNight: FilmNight }) {
-  const photo = filmNight.ticketPhoto as Media;
+  const photo = filmNight.thumbnail as Media;
 
   return (
     <Link href={`/film-nights/${filmNight.slug}`} className="film-night-card">

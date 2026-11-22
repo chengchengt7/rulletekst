@@ -1,5 +1,5 @@
 import Link from "next/link";
-import type { Media, Rating, Review, User } from "@/payload-types";
+import type { Media, Review, User } from "@/payload-types";
 import "./ReviewCard.css";
 
 type ReviewCardProps = {
@@ -8,7 +8,7 @@ type ReviewCardProps = {
 
 export default function ReviewCard({ review }: ReviewCardProps) {
   const photo = review.heroPhoto as Media;
-  const rating = review["reivew-rating"] as Rating;
+  const rating = review["reivew-rating"];
   const journalist = review.journalist as User;
 
   return (
@@ -16,7 +16,7 @@ export default function ReviewCard({ review }: ReviewCardProps) {
       <div className="review-card__image">
         <img src={photo.url!} alt={photo.alt} loading="lazy" />
         <span className="review-card__rating">
-          <img src={`/images/dice-accent/dice-${rating.title}.png`} alt={`Rated ${rating.title} out of 6`} width={36} height={36} />
+          <img src={`/images/dice-accent/dice-${rating}.png`} alt={`Rated ${rating} out of 6`} width={36} height={36} />
         </span>
       </div>
       <div className="content">

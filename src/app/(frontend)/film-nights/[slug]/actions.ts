@@ -5,7 +5,6 @@ import { cookies } from "next/headers";
 import { revalidatePath } from "next/cache";
 import { getPayload, ValidationError } from "payload";
 import config from "@payload-config";
-import type { RatingBlock } from "@/payload-types";
 import { hashToken, reservationCookie } from "@/lib/reservations";
 
 export type ReservationState = {
@@ -33,7 +32,7 @@ export async function reserveSeat(filmNight: number, _state: ReservationState, f
   const film = docs[0];
   if (!film) return fail("Film night not found.");
 
-  const rating = (film.ratingBlock as RatingBlock).title;
+  const rating = film.ratingBlock;
   const ages = new Map([["G", 0], ["PG", 0], ["PG-13", 13], ["R", 17], ["NC-17", 18]]);
   const minAge = ages.get(rating) ?? (/^\d+\+?$/.test(rating) ? parseInt(rating, 10) : null);
   if (minAge === null) return fail("Please contact the host to confirm the age requirement.");

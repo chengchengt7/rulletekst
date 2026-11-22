@@ -2,9 +2,10 @@ import { RichText } from "@payloadcms/richtext-lexical/react";
 import { getPayload } from "payload";
 import { notFound } from "next/navigation";
 import config from "@payload-config";
-import type { Director, Media, RatingBlock } from "@/payload-types";
+import type { Director, Media } from "@/payload-types";
 import ReservationForm from "./ReservationForm";
 import { getReservedFilms } from "@/lib/reservations";
+import FilmNightCard from "../../components/FilmNightCard/FilmNightCard";
 import "./page.css";
 
 
@@ -23,11 +24,20 @@ export default async function FilmNight({
   });
   const filmNight = docs[0];
   if (!filmNight) notFound();
-  const tickets = await getReservedFilms();
+  const [tickets, { docs: otherFilmNights }] = await Promise.all([
+    getReservedFilms(),
+    payload.find({
+      collection: "film-nights",
+      where: { id: { not_equals: filmNight.id } },
+      sort: "event-date",
+      depth: 1,
+      limit: 3,
+    }),
+  ]);
 
   const hero = filmNight.heroPhoto as Media;
   const director = filmNight.director as Director;
-  const rating = filmNight.ratingBlock as RatingBlock;
+  const rating = filmNight.ratingBlock;
   const eventDate = filmNight["event-date"];
   const dateLabel = eventDate
     ? new Intl.DateTimeFormat("en-GB", { weekday: "long", day: "numeric", month: "short", year: "numeric", timeZone: "Europe/Oslo" }).format(new Date(eventDate))
@@ -56,7 +66,7 @@ export default async function FilmNight({
               <dt>
                 <h5>Age rating</h5>
               </dt>
-              <dd>{rating.title}</dd>
+              <dd>{rating}</dd>
             </div>
           </dl>
           <RichText data={filmNight.description} />
@@ -99,6 +109,18 @@ export default async function FilmNight({
           reserved={tickets.some(ticket => ticket.id === filmNight.id)}
         />
       </div>
+      {otherFilmNights.length > 0 && (
+        <section className="other-film-nights" aria-labelledby="other-film-nights-title">
+          <div className="container">
+            <h3 id="other-film-nights-title">Other film nights</h3>
+            <div className="card-grid">
+              {otherFilmNights.map((film) => (
+                <FilmNightCard key={film.id} filmNight={film} />
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
     </div>
   );
 }

@@ -5,8 +5,8 @@ import type { BannerBlock, FilmNight, Media } from "@/payload-types";
 import ArrowIcon from "../ArrowIcon";
 
 export default function Banner({ block }: { block: BannerBlock }) {
-  const filmNight = block.filmNight as FilmNight;
-  const photo = filmNight.ticketPhoto as Media;
+  const filmNight = block.bannerFilmNight as FilmNight;
+  const photo = filmNight.thumbnail as Media;
   const date = filmNight["event-date"];
   const description = convertLexicalToPlaintext({ data: filmNight.description }).split("\n")[0];
 

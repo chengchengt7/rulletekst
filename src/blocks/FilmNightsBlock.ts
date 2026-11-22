@@ -1,16 +1,15 @@
 import type { Block } from "payload";
 
 export const FilmNightsBlock: Block = {
-  slug: "filmNights",
+  slug: "film-nights",
   interfaceName: "FilmNightsBlock",
-  labels: { singular: "Film Nights", plural: "Film Nights" },
   fields: [
     {
       name: "filmNights",
       type: "relationship",
       relationTo: "film-nights",
       hasMany: true,
-      minRows: 3,
+      minRows: 1,
       maxRows: 3,
       required: true,
       admin: {

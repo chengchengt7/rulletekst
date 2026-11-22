@@ -69,15 +69,13 @@ export interface Config {
     banner: BannerBlock;
     articleCards: ArticleCardsBlock;
     reviewCards: ReviewCardsBlock;
-    filmNights: FilmNightsBlock;
+    'film-nights': FilmNightsBlock;
   };
   collections: {
     users: User;
     media: Media;
     directors: Director;
     actors: Actor;
-    rating: Rating;
-    'rating-block': RatingBlock;
     reviews: Review;
     articles: Article;
     'film-nights': FilmNight;
@@ -93,8 +91,6 @@ export interface Config {
     media: MediaSelect<false> | MediaSelect<true>;
     directors: DirectorsSelect<false> | DirectorsSelect<true>;
     actors: ActorsSelect<false> | ActorsSelect<true>;
-    rating: RatingSelect<false> | RatingSelect<true>;
-    'rating-block': RatingBlockSelect<false> | RatingBlockSelect<true>;
     reviews: ReviewsSelect<false> | ReviewsSelect<true>;
     articles: ArticlesSelect<false> | ArticlesSelect<true>;
     'film-nights': FilmNightsSelect<false> | FilmNightsSelect<true>;
@@ -109,10 +105,10 @@ export interface Config {
   };
   fallbackLocale: null;
   globals: {
-    home: Home;
+    homepage: Homepage;
   };
   globalsSelect: {
-    home: HomeSelect<false> | HomeSelect<true>;
+    homepage: HomepageSelect<false> | HomepageSelect<true>;
   };
   locale: null;
   widgets: {
@@ -150,7 +146,7 @@ export interface BannerBlock {
   /**
    * Choose one film night to display in the banner.
    */
-  filmNight: number | FilmNight;
+  bannerFilmNight: number | FilmNight;
   id?: string | null;
   blockName?: string | null;
   blockType: 'banner';
@@ -167,12 +163,12 @@ export interface FilmNight {
    */
   generateSlug?: boolean | null;
   slug: string;
-  'event-date'?: string | null;
+  'event-date': string;
+  thumbnail: number | Media;
   heroPhoto: number | Media;
-  ticketPhoto: number | Media;
   director: number | Director;
   duration: number;
-  ratingBlock: number | RatingBlock;
+  ratingBlock: 'G' | 'PG' | 'PG-13' | 'R' | 'NC-17' | 'NR (US)';
   description: {
     root: {
       type: string;
@@ -219,21 +215,6 @@ export interface Media {
 export interface Director {
   id: number;
   title: string;
-  /**
-   * When enabled, the slug will auto-generate from the title field on save and autosave.
-   */
-  generateSlug?: boolean | null;
-  slug: string;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "rating-block".
- */
-export interface RatingBlock {
-  id: number;
-  title: string;
   updatedAt: string;
   createdAt: string;
 }
@@ -263,14 +244,19 @@ export interface Article {
    */
   generateSlug?: boolean | null;
   slug: string;
-  category?: string | null;
+  category:
+    | 'Cinema & Culture'
+    | 'Festivals'
+    | 'Film News'
+    | 'Filmmaking'
+    | 'Box Office'
+    | 'Tributes'
+    | 'Interviews'
+    | 'TV & Streaming';
   publishedAt?: string | null;
   heroPhoto: number | Media;
   gallery?: (number | Media)[] | null;
   'sub-title': string;
-  /**
-   * Use Quote for pull quotes and Upload to insert photos into the story.
-   */
   'review-body': {
     root: {
       type: string;
@@ -346,13 +332,13 @@ export interface Review {
   generateSlug?: boolean | null;
   slug: string;
   heroPhoto: number | Media;
-  gallery: (number | Media)[];
+  gallery?: (number | Media)[] | null;
   director: number | Director;
   duration: number;
-  ratingBlock: number | RatingBlock;
+  'age-rating': 'G' | 'PG' | 'PG-13' | 'R' | 'NC-17' | 'NR (US)';
   actors: (number | Actor)[];
   'review-title': string;
-  'reivew-rating': number | Rating;
+  'reivew-rating': '1' | '2' | '3' | '4' | '5' | '6';
   'sub-title': string;
   'review-body': {
     root: {
@@ -380,21 +366,6 @@ export interface Review {
 export interface Actor {
   id: number;
   title: string;
-  /**
-   * When enabled, the slug will auto-generate from the title field on save and autosave.
-   */
-  generateSlug?: boolean | null;
-  slug: string;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "rating".
- */
-export interface Rating {
-  id: number;
-  title: '1' | '2' | '3' | '4' | '5' | '6';
   updatedAt: string;
   createdAt: string;
 }
@@ -409,7 +380,7 @@ export interface FilmNightsBlock {
   filmNights: (number | FilmNight)[];
   id?: string | null;
   blockName?: string | null;
-  blockType: 'filmNights';
+  blockType: 'film-nights';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -464,14 +435,6 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'actors';
         value: number | Actor;
-      } | null)
-    | ({
-        relationTo: 'rating';
-        value: number | Rating;
-      } | null)
-    | ({
-        relationTo: 'rating-block';
-        value: number | RatingBlock;
       } | null)
     | ({
         relationTo: 'reviews';
@@ -583,8 +546,6 @@ export interface MediaSelect<T extends boolean = true> {
  */
 export interface DirectorsSelect<T extends boolean = true> {
   title?: T;
-  generateSlug?: T;
-  slug?: T;
   updatedAt?: T;
   createdAt?: T;
 }
@@ -593,26 +554,6 @@ export interface DirectorsSelect<T extends boolean = true> {
  * via the `definition` "actors_select".
  */
 export interface ActorsSelect<T extends boolean = true> {
-  title?: T;
-  generateSlug?: T;
-  slug?: T;
-  updatedAt?: T;
-  createdAt?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "rating_select".
- */
-export interface RatingSelect<T extends boolean = true> {
-  title?: T;
-  updatedAt?: T;
-  createdAt?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "rating-block_select".
- */
-export interface RatingBlockSelect<T extends boolean = true> {
   title?: T;
   updatedAt?: T;
   createdAt?: T;
@@ -629,7 +570,7 @@ export interface ReviewsSelect<T extends boolean = true> {
   gallery?: T;
   director?: T;
   duration?: T;
-  ratingBlock?: T;
+  'age-rating'?: T;
   actors?: T;
   'review-title'?: T;
   'reivew-rating'?: T;
@@ -666,8 +607,8 @@ export interface FilmNightsSelect<T extends boolean = true> {
   generateSlug?: T;
   slug?: T;
   'event-date'?: T;
+  thumbnail?: T;
   heroPhoto?: T;
-  ticketPhoto?: T;
   director?: T;
   duration?: T;
   ratingBlock?: T;
@@ -730,9 +671,9 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "home".
+ * via the `definition` "homepage".
  */
-export interface Home {
+export interface Homepage {
   id: number;
   layout: (BannerBlock | ArticleCardsBlock | ReviewCardsBlock | FilmNightsBlock)[];
   updatedAt?: string | null;
@@ -740,16 +681,16 @@ export interface Home {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "home_select".
+ * via the `definition` "homepage_select".
  */
-export interface HomeSelect<T extends boolean = true> {
+export interface HomepageSelect<T extends boolean = true> {
   layout?:
     | T
     | {
         banner?: T | BannerBlockSelect<T>;
         articleCards?: T | ArticleCardsBlockSelect<T>;
         reviewCards?: T | ReviewCardsBlockSelect<T>;
-        filmNights?: T | FilmNightsBlockSelect<T>;
+        'film-nights'?: T | FilmNightsBlockSelect<T>;
       };
   updatedAt?: T;
   createdAt?: T;
@@ -760,7 +701,7 @@ export interface HomeSelect<T extends boolean = true> {
  * via the `definition` "BannerBlock_select".
  */
 export interface BannerBlockSelect<T extends boolean = true> {
-  filmNight?: T;
+  bannerFilmNight?: T;
   id?: T;
   blockName?: T;
 }

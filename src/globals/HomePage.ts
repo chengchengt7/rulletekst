@@ -5,8 +5,7 @@ import { FilmNightsBlock } from "../blocks/FilmNightsBlock";
 import { ArticleBlock } from "../blocks/ArticleBlock";
 
 export const HomePage: GlobalConfig = {
-  slug: "home",
-  label: "HomePage",
+  slug: "homepage",
   fields: [
     {
       name: "layout",

@@ -3,7 +3,7 @@ import { RichText } from "@payloadcms/richtext-lexical/react";
 import config from "@payload-config";
 import { notFound } from "next/navigation";
 import { getPayload } from "payload";
-import type { Actor, Director, Media, Rating, RatingBlock, User } from "@/payload-types";
+import type { Actor, Director, Media, User } from "@/payload-types";
 import "./page.css";
 
 export default async function ReviewPage({ params }: {
@@ -23,8 +23,8 @@ export default async function ReviewPage({ params }: {
 
   const hero = review.heroPhoto as Media;
   const director = review.director as Director;
-  const ageRating = review.ratingBlock as RatingBlock;
-  const rating = review["reivew-rating"] as Rating;
+  const ageRating = review["age-rating"];
+  const rating = review["reivew-rating"];
   const journalist = review.journalist as User;
   const avatar = journalist.avatar as Media;
   const actors = review.actors as Actor[];
@@ -50,7 +50,7 @@ export default async function ReviewPage({ params }: {
             </div>
             <div>
               <dt><h5>Age rating</h5></dt>
-              <dd>{ageRating.title}</dd>
+              <dd>{ageRating}</dd>
             </div>
             <div className="cast">
               <dt><h5>Main actors</h5></dt>
@@ -68,8 +68,8 @@ export default async function ReviewPage({ params }: {
             <div className="title-dice">
               <h2 id="review-title">{review["review-title"]}</h2>
               <img
-                src={`/images/dice-accent/dice-${rating.title}.png`}
-                alt={`Rated ${rating.title} out of 6`}
+                src={`/images/dice-accent/dice-${rating}.png`}
+                alt={`Rated ${rating} out of 6`}
                 width={36}
                 height={36}
               />

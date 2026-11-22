@@ -8,26 +8,24 @@ export const FilmNights: CollectionConfig = {
   fields: [
     {
       name: "title",
+      label: "Film Name",
       type: "text",
-      label: "film name",
       required: true,
     },
     slugField(),
     {
       name: "event-date",
-      label: "Event date",
       type: "date",
-      admin: { date: { pickerAppearance: "dayOnly" } },
+      required: true,
     },
     {
-      name: "heroPhoto",
-      label: "Hero Photo",
+      name: "thumbnail",
       type: "upload",
       relationTo: "media",
       required: true,
     },
     {
-      name: "ticketPhoto",
+      name: "heroPhoto",
       type: "upload",
       relationTo: "media",
       required: true,
@@ -46,15 +44,13 @@ export const FilmNights: CollectionConfig = {
     },
     {
       name: "ratingBlock",
-      label: "Rating Block",
-      type: "relationship",
-      relationTo: "rating-block",
+      type: "select",
+      options: ["G", "PG", "PG-13", "R", "NC-17", "NR (US)"],
       required: true,
     },
     {
       name: "description",
       type: "richText",
-      label: "review body",
       required: true,
     },
   ],

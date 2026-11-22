@@ -9,53 +9,50 @@ export const Articles: CollectionConfig = {
     {
       name: "title",
       type: "text",
-      label: "article title",
+      label: "Article Title",
       required: true,
     },
     slugField(),
     {
       name: "category",
-      type: "text",
+      type: "select",
+      options: [
+        "Cinema & Culture",
+        "Festivals",
+        "Film News",
+        "Filmmaking",
+        "Box Office",
+        "Tributes",
+        "Interviews",
+        "TV & Streaming",
+      ],
+      required: true,
       defaultValue: "Cinema & Culture",
     },
     {
       name: "publishedAt",
-      label: "Publication Date",
       type: "date",
-      admin: {
-        date: {
-          pickerAppearance: "dayOnly",
-        },
-      },
     },
     {
       name: "heroPhoto",
-      label: "Hero Photo",
       type: "upload",
       relationTo: "media",
       required: true,
-      filterOptions: { mimeType: { contains: "image/" } },
     },
     {
       name: "gallery",
       type: "upload",
       relationTo: "media",
       hasMany: true,
-      filterOptions: { mimeType: { contains: "image/" } },
     },
     {
       name: "sub-title",
       type: "text",
-      label: "sub title",
       required: true,
     },
     {
       name: "review-body",
       type: "richText",
-      label: "Article Body",
-      admin: {
-        description: "Use Quote for pull quotes and Upload to insert photos into the story.",
-      },
       required: true,
     },
     {
