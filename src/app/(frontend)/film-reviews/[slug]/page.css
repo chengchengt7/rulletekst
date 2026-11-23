@@ -66,14 +66,13 @@ body:has(.review-page) > header {
   .review {
     max-width: 70ch;
     margin-inline: auto;
-     margin-block-start: 8rem;
+    margin-block-start: 8rem;
 
-    .title-dice {
-      display: flex;
-      gap: var(--space-m);
-      align-items: center;
-
-      img {rotate: 10deg;}
+    .review-dice {
+      display: inline-block;
+      vertical-align: middle;
+      rotate: 10deg;
+      margin-left: var(--space-s);
     }
 
     .review-sub {

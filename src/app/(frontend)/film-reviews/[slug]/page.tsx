@@ -41,19 +41,27 @@ export default async function ReviewPage({ params }: {
         <section className="film-facts">
           <dl className="film-info">
             <div>
-              <dt><h5>Director</h5></dt>
+              <dt>
+                <h5>Director</h5>
+              </dt>
               <dd>{director.title}</dd>
             </div>
             <div>
-              <dt><h5>Duration</h5></dt>
+              <dt>
+                <h5>Duration</h5>
+              </dt>
               <dd>{review.duration} minutes</dd>
             </div>
             <div>
-              <dt><h5>Age rating</h5></dt>
+              <dt>
+                <h5>Age rating</h5>
+              </dt>
               <dd>{ageRating}</dd>
             </div>
             <div className="cast">
-              <dt><h5>Main actors</h5></dt>
+              <dt>
+                <h5>Main actors</h5>
+              </dt>
               <dd>
                 {actors.map((actor) => (
                   <span key={actor.id}>{actor.title}</span>
@@ -65,15 +73,16 @@ export default async function ReviewPage({ params }: {
 
         <section className="review">
           <div>
-            <div className="title-dice">
-              <h2 id="review-title">{review["review-title"]}</h2>
+            <h2 id="review-title">
+              {review["review-title"]}{" "}
               <img
+                className="review-dice"
                 src={`/images/dice-accent/dice-${rating}.png`}
                 alt={`Rated ${rating} out of 6`}
                 width={36}
                 height={36}
               />
-            </div>
+            </h2>
             <p className="review-sub">{review["sub-title"]}</p>
           </div>
           <RichText data={review["review-body"]} />
