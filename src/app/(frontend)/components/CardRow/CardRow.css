@@ -5,17 +5,22 @@
 
   h3 { font-family: var(--font-ui);}
 
-  & > :first-child {
+  .card-row__heading {
     display: flex;
-    align-items: center;
+    justify-content: space-between;
+    align-items: end;
+    flex-wrap: wrap;
     gap: var(--space-s);
+  }
 
-    .arrow {
-      transition: translate 250ms ease;
-    }
+  .card-row__link {
+    font-family: var(--font-ui);
+    text-decoration: underline;
+    text-underline-offset: 0.3em;
+    transition: color 250ms ease;
 
-    &:hover .arrow {
-      translate: 4px 0;
+    &:hover {
+      color: var(--color-accent);
     }
   }
 

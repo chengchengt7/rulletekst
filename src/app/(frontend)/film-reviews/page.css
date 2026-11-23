@@ -6,7 +6,7 @@
 .film-reviews-heading {
   display: flex;
   justify-content: space-between;
-  align-items: flex-end;
+  align-items: baseline;
   flex-wrap: wrap;
   gap: var(--space-s);
   margin-block-end: var(--space-l);

@@ -1,6 +1,5 @@
 import type { ReactNode } from "react";
 import Link from "next/link";
-import ArrowIcon from "../ArrowIcon";
 import "./CardRow.css";
 
 type CardRowProps = {
@@ -12,10 +11,12 @@ type CardRowProps = {
 export default function CardRow({ title, href, children }: CardRowProps) {
   return (
     <section className="card-row">
-      <Link className="card-row__link" href={href}>
+      <div className="card-row__heading">
         <h3>{title}</h3>
-        <ArrowIcon />
-      </Link>
+        <Link className="card-row__link" href={href}>
+          View all {title.toLowerCase()}
+        </Link>
+      </div>
       <div>
         {children}
       </div>
