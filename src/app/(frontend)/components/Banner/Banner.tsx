@@ -2,7 +2,6 @@ import "./Banner.css";
 import Link from "next/link";
 import { convertLexicalToPlaintext } from "@payloadcms/richtext-lexical/plaintext";
 import type { BannerBlock, FilmNight, Media } from "@/payload-types";
-import ArrowIcon from "../ArrowIcon";
 
 export default function Banner({ block }: { block: BannerBlock }) {
   const filmNight = block.bannerFilmNight as FilmNight;
@@ -26,7 +25,7 @@ export default function Banner({ block }: { block: BannerBlock }) {
             {new Intl.DateTimeFormat("en-GB", { day: "numeric", month: "short", year: "numeric", timeZone: "Europe/Oslo" }).format(new Date(date))}
           </time>
         )}
-        <h3>View<br />details<br /><ArrowIcon /></h3>
+        <h3>View<br />event</h3>
       </Link>
     </article>
   )

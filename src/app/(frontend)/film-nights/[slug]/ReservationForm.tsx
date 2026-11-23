@@ -37,7 +37,7 @@ export default function ReservationForm({ filmNight, title, date, reserved }: {
         <input name="age" type="number" min={0} step={1} defaultValue={state.values?.age} required aria-describedby={state.error ? "reservation-error" : undefined} />
       </label>
       {state.error && <p id="reservation-error" role="alert">{state.error}</p>}
-      <button type="submit" className="button" disabled={pending}>{pending ? "Reserving…" : "Reserve my seat"}</button>
+      <button type="submit" className="button" disabled={pending}>{pending ? "Booking…" : "Book a seat"}</button>
       <p>No online payment required.</p>
     </form>
   );

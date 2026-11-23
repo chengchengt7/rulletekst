@@ -19,6 +19,8 @@ header {
       font-family: var(--font-ui);
       letter-spacing: 0.03rem;
       font-weight: 500;
+
+      &:hover {color: var(--color-accent);}
     }
   }
 }

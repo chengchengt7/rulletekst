@@ -63,19 +63,9 @@
     transform-origin: bottom left;
     transition: transform 300ms ease;
 
-    .arrow {
-      font-size: 0.75em;
-      margin-top: var(--space-xxs);
-      transition: transform 300ms ease;
-    }
-
     &:hover {
       background-color: var(--color-accent);
       transform: rotate(2deg);
-
-      .arrow {
-        transform: translateX(2px);
-      }
     }
   }
 }
