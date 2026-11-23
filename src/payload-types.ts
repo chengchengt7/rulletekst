@@ -67,6 +67,7 @@ export interface Config {
   };
   blocks: {
     banner: BannerBlock;
+    slogan: SloganBlock;
     articleCards: ArticleCardsBlock;
     reviewCards: ReviewCardsBlock;
     'film-nights': FilmNightsBlock;
@@ -217,6 +218,19 @@ export interface Director {
   title: string;
   updatedAt: string;
   createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "SloganBlock".
+ */
+export interface SloganBlock {
+  /**
+   * Use a new line to split the slogan. Film images are automatically pulled from review cover images.
+   */
+  slogan: string;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'slogan';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -675,7 +689,7 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
  */
 export interface Homepage {
   id: number;
-  layout: (BannerBlock | ArticleCardsBlock | ReviewCardsBlock | FilmNightsBlock)[];
+  layout: (BannerBlock | SloganBlock | ArticleCardsBlock | ReviewCardsBlock | FilmNightsBlock)[];
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -688,6 +702,7 @@ export interface HomepageSelect<T extends boolean = true> {
     | T
     | {
         banner?: T | BannerBlockSelect<T>;
+        slogan?: T | SloganBlockSelect<T>;
         articleCards?: T | ArticleCardsBlockSelect<T>;
         reviewCards?: T | ReviewCardsBlockSelect<T>;
         'film-nights'?: T | FilmNightsBlockSelect<T>;
@@ -702,6 +717,15 @@ export interface HomepageSelect<T extends boolean = true> {
  */
 export interface BannerBlockSelect<T extends boolean = true> {
   bannerFilmNight?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "SloganBlock_select".
+ */
+export interface SloganBlockSelect<T extends boolean = true> {
+  slogan?: T;
   id?: T;
   blockName?: T;
 }

@@ -1,5 +1,4 @@
 import Banner from "./components/Banner/Banner";
-import Gallery from "./components/Gallery/Gallery";
 import CardRow from "./components/CardRow/CardRow";
 import FilmNights from "./components/FilmNights/FilmNights";
 import Slogan from "./components/Slogan/Slogan";
@@ -28,40 +27,42 @@ export default async function HomePage() {
     },
   });
 
-  const { docs: reviews } = await payload.find({
-    collection: "reviews",
-    depth: 1,
-    pagination: false,
-    select: { heroPhoto: true },
-  });
-  const photos = reviews.map((review) => review.heroPhoto as Media);
-  const firstBlock = home.layout[0];
+  const reviews = home.layout.some((block) => block.blockType === "slogan")
+    ? (await payload.find({
+        collection: "reviews",
+        depth: 1,
+        pagination: false,
+        sort: "id",
+        select: { heroPhoto: true },
+      })).docs
+    : [];
+  const photos = reviews
+    .map((review) => review.heroPhoto)
+    .filter((photo): photo is Media => typeof photo === "object" && photo !== null && Boolean(photo.url))
+    .filter((photo, index, all) => all.findIndex((item) => item.id === photo.id) === index);
 
   return (
     <div className="home-page">
       <div className="container">
-        {firstBlock?.blockType === "banner" && <Banner block={firstBlock} />}
-        <div className="home-gallery-area">
-          <Gallery images={photos} background />
-          <Slogan />
-          {home.layout.slice(firstBlock?.blockType === "banner" ? 1 : 0).map((block) => block.blockType === "banner" ? (
-            <Banner key={block.id} block={block} />
-          ) : block.blockType === "film-nights" ? (
-            <FilmNights key={block.id} block={block} />
-          ) : block.blockType === "articleCards" ? (
-            <CardRow key={block.id} title={block.title} href="/articles">
-              {(block.articles as Article[]).map((article) => (
-                <ArticleCard key={article.id} article={article} />
-              ))}
-            </CardRow>
-          ) : (
-            <CardRow key={block.id} title={block.title} href="/film-reviews">
-              {(block.reviews as Review[]).map((review) => (
-                <ReviewCard key={review.id} review={review} />
-              ))}
-            </CardRow>
-          ))}
-        </div>
+        {home.layout.map((block) => block.blockType === "banner" ? (
+          <Banner key={block.id} block={block} />
+        ) : block.blockType === "slogan" ? (
+          <Slogan key={block.id} block={block} images={photos} />
+        ) : block.blockType === "film-nights" ? (
+          <FilmNights key={block.id} block={block} />
+        ) : block.blockType === "articleCards" ? (
+          <CardRow key={block.id} title={block.title} href="/articles">
+            {(block.articles as Article[]).map((article) => (
+              <ArticleCard key={article.id} article={article} />
+            ))}
+          </CardRow>
+        ) : block.blockType === "reviewCards" ? (
+          <CardRow key={block.id} title={block.title} href="/film-reviews">
+            {(block.reviews as Review[]).map((review) => (
+              <ReviewCard key={review.id} review={review} />
+            ))}
+          </CardRow>
+        ) : null)}
       </div>
     </div>
   );

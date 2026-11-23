@@ -1,10 +1,12 @@
+import type { Media, SloganBlock } from "@/payload-types";
+import Gallery from "../Gallery/Gallery";
 import "./Slogan.css";
 
-export default function Slogan() {
+export default function Slogan({ block, images }: { block: SloganBlock; images: Media[] }) {
   return (
     <section className="slogan">
-      <h1>The film ends.</h1>
-      <h1>The conversation begins.</h1>
+      <Gallery images={images} background />
+      <h1>{block.slogan}</h1>
     </section>
   );
 }

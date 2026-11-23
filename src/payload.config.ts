@@ -22,6 +22,7 @@ import { ReviewBlock } from './blocks/ReviewBlock';
 import { BannerBlock } from './blocks/BannerBlock';
 import { FilmNightsBlock } from './blocks/FilmNightsBlock';
 import { ArticleBlock } from './blocks/ArticleBlock';
+import { SloganBlock } from './blocks/SloganBlock';
 import { FilmNights } from './collections/FilmNights';
 import { Reservations } from './collections/Reservations';
 
@@ -52,10 +53,10 @@ const collections: CollectionConfig[] = [
  */
 const blocks: Block[] = [
   BannerBlock,
+  SloganBlock,
   ArticleBlock,
   ReviewBlock,
   FilmNightsBlock,
-
 ];
 
 const globals: GlobalConfig[] = [

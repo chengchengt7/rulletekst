@@ -1,10 +1,16 @@
 .slogan {
+  position: relative;
+  isolation: isolate;
   margin-block: 12rem 14rem;
   text-align: center;
 
+  > .gallery--background {
+    inset-block-start: 50%;
+    transform: translateY(-50%);
+  }
+
   h1 {
-    color: var(--color-100);
-    line-height: 0.5;
-    margin-block-end: 2.5rem;
+    white-space: pre-line;
+    line-height: 1;
   }
 }
